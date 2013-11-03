@@ -1,0 +1,8 @@
+1. Put the settings atom in the datomic.clj
+2. Read the settings from a config file.
+3. Do away with the atom and just read from a config ns.
+4. Use prismatic to structure the functions.
+5. Read the config file path from leiningen profiles.
+6. Separate the concerns in upsert-en.
+7. Throw an exception is validation fails.
+8. Handle the exception using ribol , throw+ ?

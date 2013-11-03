@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Leiningen: im.chit/ribol:0.3.2">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/im/chit/ribol/0.3.2/ribol-0.3.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
