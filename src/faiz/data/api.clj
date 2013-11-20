@@ -32,6 +32,23 @@
 ;; retrieve address of a person, return all thaalis, pending hubs.
 (def given-person-get-thaalis )
 
+((dt/api :qu) '[:find ?thaali
+                :in $ ?its
+                :where
+                [?person :person/its ?its]
+                [?person :person/address ?add]
+                [?add :]]
+ 20341280)
+
+;; retrieve thaalis that were active during a month
+
+;; retrieve currently active thaalis
+
+;; retrieve the duration during which a thaali was active
+
+;; retrieve the start stop and duration activity of a thaali during a time span.
+
+  (find-person-by-its 20341280)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Create API ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -91,9 +108,6 @@
 )
 
 (upsert-en person1)
-
-
-
 
 ;(def thaali-mappings
 ;  [:thaali/num

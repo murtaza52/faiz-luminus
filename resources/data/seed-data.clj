@@ -21,25 +21,6 @@
 ;;   :delivery/mode :delivery.mode/transport
 ;;   :common/entity-type :common.entity-type/thaali}
 
-
-;;  {:db/id #db/id[:db.part/user -1000002]
-;;   :thaali/size :thaali.size/half
-;;   :thaali/num 21
-;;   :common/hijri-year 1434
-;;   :common/hijri-month "Zilqaad"
-;;   :delivery/mode :delivery.mode/pickup
-;;   :thaali/started-on "01-04-13"
-;;   :thaali/stopped-on "01-05-13"}
-
-;; {:db/id #db/id[:db.part/user -1000003]
-;;   :thaali/size :thaali.size/full
-;;   :thaali/num 22
-;;   :common/hijri-year 1434
-;;   :common/hijri-month "Zilqaad"
-;;   :delivery/mode :delivery.mode/transport
-;;   :thaali/started-on "01-04-13"
-;;   :thaali/stopped-on "10-04-13"}
-
 ;; ;;transporter
 ;;   {:db/id #db/id[:db.part/user -1000004]
 ;;   :common/entity-type :common.entity-type/person
@@ -108,6 +89,26 @@
   :address/building "A5"
   :address/floor "4"
   :address/flat-num "206"}
+
+ {:db/id #db/id[:db.part/user -1000002]
+  :thaali/size :thaali.size/half
+  :thaali/num 21
+  :common/hijri-year 1434
+  :common/hijri-month "Zilqaad"
+  :delivery/mode :delivery.mode/pickup
+  :thaali/started-on "01-04-13"
+  :thaali/stopped-on "01-05-13"}
+
+{:db/id #db/id[:db.part/user -1000003]
+  :thaali/size :thaali.size/full
+  :thaali/num 22
+  :common/hijri-year 1434
+  :common/hijri-month "Zilqaad"
+  :delivery/mode :delivery.mode/transport
+  :thaali/started-on "01-04-13"
+  :thaali/stopped-on "10-04-13"}
+
+
 
 ;;  :address/thaali-details [#db/id[:db.part/user -1000001]
 ;;                            #db/id[:db.part/user -1000002]

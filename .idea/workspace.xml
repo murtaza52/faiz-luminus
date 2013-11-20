@@ -10,14 +10,14 @@
     <file path="/config.edn" changelist="a92a5fc3-3654-4929-a990-c3bab42c393b" time="1383324256066" ignored="false" />
     <file path="/a.clj" changelist="a92a5fc3-3654-4929-a990-c3bab42c393b" time="1383233969695" ignored="false" />
     <file path="/config.clj" changelist="a92a5fc3-3654-4929-a990-c3bab42c393b" time="1383234655254" ignored="false" />
-    <file path="/Dummy.txt" changelist="a92a5fc3-3654-4929-a990-c3bab42c393b" time="1383281127928" ignored="false" />
+    <file path="/Dummy.txt" changelist="a92a5fc3-3654-4929-a990-c3bab42c393b" time="1384758089874" ignored="false" />
     <file path="$PROJECT_DIR$/../../gwt/cadc/app/cadc/configurations/CadcConfigComp.scala" changelist="a92a5fc3-3654-4929-a990-c3bab42c393b" time="1383281198629" ignored="false" />
     <file path="$PROJECT_DIR$/../../gwt/cadc/app/cadc/services/ItemServiceComp.scala" changelist="a92a5fc3-3654-4929-a990-c3bab42c393b" time="1383281198629" ignored="false" />
     <file path="$PROJECT_DIR$/../../gwt/cadc/app/cadc/repositories/ItemRepoComp.scala" changelist="a92a5fc3-3654-4929-a990-c3bab42c393b" time="1383320267902" ignored="false" />
     <file path="$PROJECT_DIR$/../../gwt/cadc/app/cadc/models/common.scala" changelist="a92a5fc3-3654-4929-a990-c3bab42c393b" time="1383281198629" ignored="false" />
     <file path="$PROJECT_DIR$/../../gwt/cadc/test/cadc/doubles/mocks.scala" changelist="a92a5fc3-3654-4929-a990-c3bab42c393b" time="1383281198629" ignored="false" />
     <file path="$PROJECT_DIR$/../../gwt/cadc/app/cadc/repositories/common/MongoCollectionComp.scala" changelist="a92a5fc3-3654-4929-a990-c3bab42c393b" time="1383281198629" ignored="false" />
-    <file path="$PROJECT_DIR$/../../gwt/cadc/test/cadc/services/publishing/TopLevelCreatorSpec.scala" changelist="a92a5fc3-3654-4929-a990-c3bab42c393b" time="1383281198629" ignored="false" />
+    <file path="$PROJECT_DIR$/../../gwt/cadc/test/cadc/services/publishing/TopLevelCreatorSpec.scala" changelist="a92a5fc3-3654-4929-a990-c3bab42c393b" time="1384757551718" ignored="false" />
     <file path="$PROJECT_DIR$/../../gwt/cadc/app/cadc/services/publishing/TopLevelCreatorComp.scala" changelist="a92a5fc3-3654-4929-a990-c3bab42c393b" time="1383281198630" ignored="false" />
     <file path="/TopLevelCreatorSpec.scala" changelist="a92a5fc3-3654-4929-a990-c3bab42c393b" time="1383281238185" ignored="false" />
     <file path="$PROJECT_DIR$/../../gwt/ui/modules/product_details_legacy/module.jade" changelist="a92a5fc3-3654-4929-a990-c3bab42c393b" time="1383306847467" ignored="false" />
@@ -29,12 +29,20 @@
     <file path="/ProductDetailsLegacySpec.scala" changelist="a92a5fc3-3654-4929-a990-c3bab42c393b" time="1383304321951" ignored="false" />
     <file path="$PROJECT_DIR$/../../gwt/ui/seed/data/product/model/product_details_tv_bravia_br100x.json" changelist="a92a5fc3-3654-4929-a990-c3bab42c393b" time="1383306847467" ignored="false" />
     <file path="$PROJECT_DIR$/../../gwt/ui/seed/data/product/sku/bravia_br100x-xy.json" changelist="a92a5fc3-3654-4929-a990-c3bab42c393b" time="1383303947986" ignored="false" />
-    <file path="$PROJECT_DIR$/../../gwt/ui/src/test/scala/ui/modules/product_details/ProductDetailsSpec.scala" changelist="a92a5fc3-3654-4929-a990-c3bab42c393b" time="1383306838651" ignored="false" />
+    <file path="$PROJECT_DIR$/../../gwt/ui/src/test/scala/ui/modules/product_details/ProductDetailsSpec.scala" changelist="a92a5fc3-3654-4929-a990-c3bab42c393b" time="1384755988628" ignored="false" />
     <file path="/ProductDetailsSpec.scala" changelist="a92a5fc3-3654-4929-a990-c3bab42c393b" time="1383306161503" ignored="false" />
     <file path="$PROJECT_DIR$/../../gwt/pdp/app/pdp/services/PageServiceComp.scala" changelist="a92a5fc3-3654-4929-a990-c3bab42c393b" time="1383306847467" ignored="false" />
     <file path="$PROJECT_DIR$/../../gwt/cadc/app/cadc/utils/DateUtilComp.scala" changelist="a92a5fc3-3654-4929-a990-c3bab42c393b" time="1383320267902" ignored="false" />
     <file path="$PROJECT_DIR$/../../gwt/cadc/app/cadc/repositories/common/DbComp.scala" changelist="a92a5fc3-3654-4929-a990-c3bab42c393b" time="1383320267903" ignored="false" />
     <file path="/api.clj" changelist="a92a5fc3-3654-4929-a990-c3bab42c393b" time="1383375259615" ignored="false" />
+    <file path="$PROJECT_DIR$/../../gwt/ui/modules/js_disabled/module.conf" changelist="a92a5fc3-3654-4929-a990-c3bab42c393b" time="1384757412238" ignored="false" />
+    <file path="$PROJECT_DIR$/../../gwt/pdp/app/pdp/models/RenderingContext.scala" changelist="a92a5fc3-3654-4929-a990-c3bab42c393b" time="1384757435869" ignored="false" />
+    <file path="$PROJECT_DIR$/../../gwt/cadc/app/cadc/services/injectors/bodyModuleInjectors.scala" changelist="a92a5fc3-3654-4929-a990-c3bab42c393b" time="1384757829934" ignored="false" />
+    <file path="/bodyModuleInjectors.scala" changelist="a92a5fc3-3654-4929-a990-c3bab42c393b" time="1384757829934" ignored="false" />
+    <file path="$PROJECT_DIR$/../../gwt/pdp/conf/base.conf" changelist="a92a5fc3-3654-4929-a990-c3bab42c393b" time="1384757937739" ignored="false" />
+    <file path="/base.conf" changelist="a92a5fc3-3654-4929-a990-c3bab42c393b" time="1384757922579" ignored="false" />
+    <file path="$PROJECT_DIR$/../../gwt/cadc/app/cadc/utils/ProductPageAssemblyEnricher.scala" changelist="a92a5fc3-3654-4929-a990-c3bab42c393b" time="1384758521320" ignored="false" />
+    <file path="/ProductPageAssemblyEnricher.scala" changelist="a92a5fc3-3654-4929-a990-c3bab42c393b" time="1384758112884" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +105,7 @@
       <file leaf-file-name="datomic.clj" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/faiz/data/datomic.clj">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="71" column="14" selection-start="1478" selection-end="1478" vertical-scroll-proportion="0.4233871">
+            <state line="62" column="14" selection-start="1324" selection-end="1324" vertical-scroll-proportion="0.027814569">
               <folding />
             </state>
           </provider>
@@ -125,9 +133,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-3" />
     <option name="y" value="22" />
-    <option name="width" value="1443" />
+    <option name="width" value="1440" />
     <option name="height" value="824" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -146,7 +153,7 @@
     <option name="STATE" value="0" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
+    <navigator proportions="" version="1" splitterProportion="0.5">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -157,120 +164,7 @@
       <autoscrollFromSource />
       <sortByType />
     </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="project.clj" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="project.clj" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="faiz" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="project.clj" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="faiz" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="faiz" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="project.clj" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="faiz" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="faiz" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="data" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="project.clj" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="faiz" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="project.clj" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="faiz" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="data" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="project.clj" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="faiz" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-    </panes>
+    <panes />
   </component>
   <component name="PropertiesComponent">
     <property name="project.structure.last.edited" value="Modules" />
@@ -284,11 +178,12 @@
     <property name="GoToClass.includeJavaFiles" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="FullScreen" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="dynamic.classpath" value="false" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="dynamic.classpath" value="false" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
@@ -312,6 +207,19 @@
       <option name="SHMEM_ADDRESS" value="javadebug" />
       <option name="HOST" value="localhost" />
       <option name="PORT" value="5005" />
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
@@ -340,19 +248,6 @@
       <envs />
       <properties />
       <listeners />
-      <method />
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -427,8 +322,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-3" y="22" width="1443" height="824" extended-state="6" />
-    <editor active="true" />
+    <frame x="0" y="22" width="1440" height="824" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -449,7 +344,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17275986" sideWeight="0.6701847" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="REPL" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.372043" sideWeight="0.6701847" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="REPL" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.372043" sideWeight="0.6701847" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -519,11 +414,16 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/faiz/data/api.clj">
+    <entry file="file://$PROJECT_DIR$/src/faiz/data/datomic.clj">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="1" selection-start="638" selection-end="638" vertical-scroll-proportion="0.0">
+        <state line="62" column="14" selection-start="1324" selection-end="1324" vertical-scroll-proportion="0.0">
           <folding />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/faiz/data/api.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="1" selection-start="638" selection-end="638" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/faiz/data/datomic.clj">
@@ -580,14 +480,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/faiz/data/api.clj">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="23" selection-start="714" selection-end="714" vertical-scroll-proportion="0.5927419">
-          <folding />
-        </state>
+        <state line="28" column="23" selection-start="714" selection-end="714" vertical-scroll-proportion="0.5927419" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/faiz/data/datomic.clj">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="71" column="14" selection-start="1478" selection-end="1478" vertical-scroll-proportion="0.4233871">
+        <state line="62" column="14" selection-start="1324" selection-end="1324" vertical-scroll-proportion="0.027814569">
           <folding />
         </state>
       </provider>
