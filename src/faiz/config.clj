@@ -3,4 +3,4 @@
 
 (def conf-file "config/config.edn")
 
-(def config (utils/read-edn conf-file))
+(def config #(utils/read-edn conf-file))

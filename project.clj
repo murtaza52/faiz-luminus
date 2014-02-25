@@ -11,13 +11,14 @@
                  [com.taoensso/tower "1.7.1"]
                  [markdown-clj "0.9.33"]
                  [com.datomic/datomic-free "0.8.4143"]
-                 [im.chit/ribol "0.3.2"]
-                 [liberator "0.9.0"]
-                 [core.typed "0.1.8"]
                  [prismatic/plumbing "0.1.1"]
-                 [com.novemberain/validateur "1.2.0"]
-                 [org.clojure/tools.namespace "0.2.4"]]
-  :plugins [[lein-ring "0.8.7"]]
+                 [org.clojure/tools.namespace "0.2.4"]
+                 [org.clojure/clojurescript "0.0-2030"]
+                 [prismatic/dommy "0.1.2"]
+                 [org.clojure/core.async "0.1.242.0-44b1e3-alpha"]]
+  :plugins [[lein-ring "0.8.7"]
+            [lein-cljsbuild "1.0.0"]]
+  :hooks [leiningen.cljsbuild]
   :ring {:handler sample.handler/war-handler
          :init    sample.handler/init
          :destroy sample.handler/destroy}
@@ -27,4 +28,10 @@
                                  :auto-reload?  false}}
              :dev {:dependencies [[ring-mock "0.1.5"]
                                   [ring/ring-devel "1.2.0"]]}}
+  :cljsbuild
+  {:builds [{:source-paths ["src-cljs"]
+             :compiler {:output-to "resources/public/js/site.js"
+                        :optimizations :whitespace
+                        :pretty-print true
+                        :source-map "site.js.map"}}]}
   :min-lein-version "2.0.0")

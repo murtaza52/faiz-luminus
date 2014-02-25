@@ -1,6 +1,6 @@
 (ns faiz.data.api
   (:require [faiz.data.datomic :as dt]
-            [validateur.validation :as val]))
+            [datomic.api :as d]))
 
 
 (def search-clause '[:find ?e
@@ -32,15 +32,56 @@
 ;; retrieve address of a person, return all thaalis, pending hubs.
 (def given-person-get-thaalis )
 
-((dt/api :qu) '[:find ?thaali
+;; retrieve all active thaalis for the address of a particular person
+(defn thaalis-for-its-address
+  [its]
+  ((dt/api :qu) '[:find ?thaali-num ?size ?thaali
                 :in $ ?its
                 :where
                 [?person :person/its ?its]
                 [?person :person/address ?add]
-                [?add :]]
- 20341280)
+                [?thaali :thaali/address ?add]
+                [?thaali :thaali/num ?thaali-num]
+                [?thaali :thaali/size ?thaali-size]
+                [?thaali-size :db/ident ?size]]
+   its))
+
+(def e (dt/api :id->entity))
+
+(thaalis-for-its-address 20341280)
+
+((:entity dt/api) 17592186045444)
+
+(defn attr-missing?
+  [db eid attr]
+(attr (d/entity db eid)))
+
+(defn pending-hubs-for-its-address
+  [its]
+  ((dt/api :qu) '[:find ?thaali-num ?size
+                :in $ ?its
+                :where
+                [?p :person/its ?its]
+                [?p :person/address ?add]
+                [?all-p :person/address ?add]
+                []]
+   its))
+
+
+
+
+
+;; a hub object is created when a new thaali is started
+
+
+
+;; retrieve all pending hubs for a particular
+()
+
 
 ;; retrieve thaalis that were active during a month
+
+
 
 ;; retrieve currently active thaalis
 
@@ -50,6 +91,7 @@
 
   (find-person-by-its 20341280)
 
+;; create incharges for each thaali.
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Create API ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

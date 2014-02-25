@@ -1,6 +1,5 @@
 (ns faiz.data.datomic
   (:require [datomic.api :refer [db q] :as d]
-            [ribol.core :refer [manage on]]
             [faiz.config :refer [config]]
             [plumbing.core :refer [fnk]]
             [plumbing.graph :as graph]
@@ -75,10 +74,11 @@
      :seed-data-res (fnk [seed-data add-data] (doall (map add-data seed-data)))
      :qu (fnk [conn] (partial qu conn))
      :id->entity (fnk [conn] (partial id->entity conn))
+     :entity (fnk[conn] (fn[id] (d/entity (d/db conn) id)))
      :find-en (fnk [qu id->entity] (fn [clause param] ((comp realize-en id->entity qu) clause param)))
      :upsert-en (fnk [conn] (partial upsert-en conn)))))
 
-(def api (dt (config :db)))
+(def api (-> (config) :db dt))
 
 (comment
 

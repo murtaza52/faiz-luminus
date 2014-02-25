@@ -82,6 +82,24 @@
  :db/doc "Email Address"
  :db.install/_attribute :db.part/db}
 
+;; groupings of addressess for which there are incharges
+;; Groups
+
+{:db/id #db/id[:db.part/db]
+ :db/ident :group/name
+ :db/valueType :db.type/string
+ :db/cardinality :db.cardinality/one
+ :db/doc "Name of a group"
+ :db/unique :db.unique/value
+ :db.install/_attribute :db.part/db}
+
+{:db/id #db/id[:db.part/db]
+ :db/ident :group/addresses
+ :db/valueType :db.type/ref
+ :db/cardinality :db.cardinality/many
+ :db/doc "Addresses that exist in a group."
+ :db.install/_attribute :db.part/db}
+
 ;;Address
 
  {:db/id #db/id[:db.part/db]
@@ -156,27 +174,6 @@
   :db/doc "Street Name"
  :db.install/_attribute :db.part/db}
 
-{:db/id #db/id[:db.part/db]
- :db/ident :address/primary-incharge
- :db/valueType :db.type/ref
- :db/cardinality :db.cardinality/one
- :db/doc "Primary Person incharge for the thaalis in the residence."
- :db.install/_attribute :db.part/db}
-
-{:db/id #db/id[:db.part/db]
- :db/ident :address/secondary-incharge
- :db/valueType :db.type/ref
- :db/cardinality :db.cardinality/one
- :db/doc "Secondary Person incharge for the thaalis in the residence."
- :db.install/_attribute :db.part/db}
-
-{:db/id #db/id[:db.part/db]
- :db/ident :address/thaali-details
- :db/valueType :db.type/ref
- :db/cardinality :db.cardinality/many
- :db/doc "A vector of thaali details for each month for each thaali."
- :db.install/_attribute :db.part/db}
-
 ;;education
 
 {:db/id #db/id[:db.part/db]
@@ -218,6 +215,13 @@
 ;;thaali-details
 
 {:db/id #db/id[:db.part/db]
+ :db/ident :thaali/address
+ :db/valueType :db.type/ref
+ :db/cardinality :db.cardinality/one
+ :db/doc "Address of the thaali"
+ :db.install/_attribute :db.part/db}
+
+ {:db/id #db/id[:db.part/db]
  :db/ident :thaali/size
  :db/valueType :db.type/ref
  :db/cardinality :db.cardinality/one
@@ -371,13 +375,6 @@
 
 ;; Hub
 
- {:db/id #db/id[:db.part/db]
- :db/ident :hub/hub-details
- :db/valueType :db.type/ref
- :db/cardinality :db.cardinality/many
- :db/doc "Array of hub details for each address."
- :db.install/_attribute :db.part/db}
-
 {:db/id #db/id[:db.part/db]
  :db/ident :hub/pledged
  :db/valueType :db.type/long
@@ -386,23 +383,38 @@
  :db.install/_attribute :db.part/db}
 
 {:db/id #db/id[:db.part/db]
+ :db/ident :hub/person
+ :db/valueType :db.type/ref
+ :db/cardinality :db.cardinality/one
+ :db/doc "The person for which the hub was received / or by whom the hub was pledged."
+ :db.install/_attribute :db.part/db}
+
+ {:db/id #db/id[:db.part/db]
+ :db/ident :hub/for
+ :db/valueType :db.type/ref
+ :db/cardinality :db.cardinality/one
+ :db/doc "The person for which the hub was received / or by whom the hub was pledged."
+ :db.install/_attribute :db.part/db}
+
+
+{:db/id #db/id[:db.part/db]
  :db/ident :hub/amount-received
  :db/valueType :db.type/long
- :db/cardinality :db.cardinality/many
+ :db/cardinality :db.cardinality/one
  :db/doc "Hub Amount Received"
  :db.install/_attribute :db.part/db}
 
 {:db/id #db/id[:db.part/db]
  :db/ident :hub/received-on
  :db/valueType :db.type/string
- :db/cardinality :db.cardinality/many
+ :db/cardinality :db.cardinality/one
  :db/doc "Hub Amount Received On"
  :db.install/_attribute :db.part/db}
 
 {:db/id #db/id[:db.part/db]
  :db/ident :hub/received-by
  :db/valueType :db.type/string
- :db/cardinality :db.cardinality/many
+ :db/cardinality :db.cardinality/one
  :db/doc "Hub Amount Received"
  :db.install/_attribute :db.part/db}
 
