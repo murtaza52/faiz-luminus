@@ -21,8 +21,6 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Search API ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(def find-all-persons (find-en :person))
-
 (def find-person-by-its (find-en :person/its))
 
 (def find-person-by-mobile (find-en :person/mobile))
@@ -30,7 +28,7 @@
 (def find-thaali-by-num (find-en :thaali/num))
 
 ;; retrieve address of a person, return all thaalis, pending hubs.
-(def given-person-get-thaalis )
+(def given-person-get-thaalis)
 
 ;; retrieve all active thaalis for the address of a particular person
 (defn thaalis-for-its-address
@@ -49,6 +47,14 @@
 (def e (dt/api :id->entity))
 
 (thaalis-for-its-address 20341280)
+;; find all persons in Pune
+(find-all-persons :find)
+(def all-persons-in-pune
+  ((dt/api :qu) '[:find ?its
+                :where
+                [?person :person/its ?its]
+                [?person :person/in-pune true]]))
+;; find all persons in Pune and taking thaali barakat
 
 ((:entity dt/api) 17592186045444)
 

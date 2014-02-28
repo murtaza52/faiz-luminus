@@ -52,6 +52,8 @@
    :person/its 20341280
    :person/mobile 9923109052
    :person/email "abc@abc.com"
+   :person/in-poona? true
+   :person/receives-thaali? true
    :person/address #db/id[:db.part/user -1000005]}
 
   {:db/id #db/id[:db.part/user -1000010]
@@ -61,7 +63,18 @@
    :person/its 20359401
    :person/mobile 9923589052
    :person/email "abc@abc.com"
+   :person/in-poona? true
+   :person/receives-thaali? false
    :person/address #db/id[:db.part/user -1000005]}
+
+;;    {:db/id #db/id[:db.part/user -1000010]
+;;    :person/first-name "Mustafa"
+;;    :person/middle-name "S"
+;;    :person/last-name "D"
+;;    :person/its 20359422
+;;    :person/mobile 9923589111
+;;    :person/email "abc@abc.com"
+;;    :person/address #db/id[:db.part/user -1000005]}
 
  {:db/id #db/id[:db.part/user -1000005]
   :address/area "Salunke Vihaar"

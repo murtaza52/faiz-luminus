@@ -39,6 +39,20 @@
   :db/doc "Watan"
   :db.install/_attribute :db.part/db}
 
+ {:db/id #db/id[:db.part/db]
+  :db/ident :person/in-poona?
+  :db/valueType :db.type/boolean
+  :db/cardinality :db.cardinality/one
+  :db/doc "Is the person present in Poona?"
+  :db.install/_attribute :db.part/db}
+
+  {:db/id #db/id[:db.part/db]
+  :db/ident :person/receives-thaali?
+  :db/valueType :db.type/boolean
+  :db/cardinality :db.cardinality/one
+  :db/doc "Does the person receive thaali?"
+  :db.install/_attribute :db.part/db}
+
 {:db/id #db/id[:db.part/db]
   :db/ident :person/its
   :db/valueType :db.type/long

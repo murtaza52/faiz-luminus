@@ -3,14 +3,15 @@
             [faiz.config :refer [config]]
             [plumbing.core :refer [fnk]]
             [plumbing.graph :as graph]
+            [schema.core :as s]
             [faiz.utils :as utils]))
+
 
 (defn reset-db!
   [uri]
   (d/delete-database uri)
   (d/create-database uri))
 
-;; # Utility Functions
 (defn trans
   "Utility function for transacting data"
   [tx-data conn]
