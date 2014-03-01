@@ -87,7 +87,9 @@
 
  {:db/id #db/id[:db.part/user -1000020]
   :group/name "Saifee"
-  :group/addresses [#db/id[:db.part/user -1000005]]}
+  :group/addresses [#db/id[:db.part/user -1000005]]
+  :group/musaid #db/id[:db.part/user -1000009]
+  :group/coordinator #db/id[:db.part/user -1000010]}
 
  {:db/id #db/id[:db.part/user -1000002]
   :thaali/size :thaali.size/half
