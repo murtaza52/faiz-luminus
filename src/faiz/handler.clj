@@ -5,8 +5,7 @@
             [compojure.route :as route]
             [taoensso.timbre :as timbre]
             [com.postspectacular.rotor :as rotor]
-            [faiz.routes.cljsexample :refer [cljs-routes]]
-            [ring.middleware.edn :refer [wrap-edn-params]]))
+            [faiz.routes.cljsexample :refer [cljs-routes]]))
 
 (defroutes
   app-routes
@@ -41,7 +40,7 @@
  (middleware/app-handler
    [cljs-routes home-routes app-routes]
    :middleware
-   [wrap-edn-params]
+   []
    :access-rules
    []))
 

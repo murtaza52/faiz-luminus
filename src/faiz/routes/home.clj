@@ -1,7 +1,8 @@
 (ns faiz.routes.home
   (:use compojure.core)
   (:require [faiz.views.layout :as layout]
-            [faiz.util :as util]))
+            [faiz.util :as util]
+            [faiz.routes.controllers :as c]))
 
 (defn home-page []
   (layout/render
@@ -12,4 +13,8 @@
 
 (defroutes home-routes
   (GET "/" [] (home-page))
-  (GET "/about" [] (about-page)))
+  (GET "/about" [] (about-page))
+  (GET "/persons/all" [] (c/persons-taking-thaalis)))
+
+
+(c/persons-taking-thaalis)

@@ -114,6 +114,20 @@
  :db/doc "Addresses that exist in a group."
  :db.install/_attribute :db.part/db}
 
+ {:db/id #db/id[:db.part/db]
+ :db/ident :group/musaid
+ :db/valueType :db.type/ref
+ :db/cardinality :db.cardinality/one
+ :db/doc "Musaid of the group."
+ :db.install/_attribute :db.part/db}
+
+{:db/id #db/id[:db.part/db]
+ :db/ident :group/coordinator
+ :db/valueType :db.type/ref
+ :db/cardinality :db.cardinality/one
+ :db/doc "Coordinator of the group."
+ :db.install/_attribute :db.part/db}
+
 ;;Address
 
  {:db/id #db/id[:db.part/db]
@@ -343,8 +357,10 @@
 
 [:db/add #db/id[:db.part/user] :db/ident :common.roles/admin]
 [:db/add #db/id[:db.part/user] :db/ident :common.roles/transporter]
-[:db/add #db/id[:db.part/user] :db/ident :common.roles/khidmatguzar]
 [:db/add #db/id[:db.part/user] :db/ident :common.roles/caterer]
+[:db/add #db/id[:db.part/user] :db/ident :common.roles/musaid]
+[:db/add #db/id[:db.part/user] :db/ident :common.roles/coordinator]
+
 
 {:db/id #db/id[:db.part/db]
  :db/ident :common/hijri-year

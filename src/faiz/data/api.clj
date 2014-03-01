@@ -19,6 +19,17 @@
     ((dt/api :find-en) (merge search-clause (vector '?e attribute '?v))
                        param)))
 
+(defn realize-entities
+  [k]
+  (fn [s]
+    (->>
+     s
+     (map first)
+     (map #((dt/api :entity) [k %]))
+     (map d/touch))))
+
+(def realize-person (realize-entities :person/its))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Search API ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (def find-person-by-its (find-en :person/its))
@@ -44,19 +55,31 @@
                 [?thaali-size :db/ident ?size]]
    its))
 
-(def e (dt/api :id->entity))
-
-(thaalis-for-its-address 20341280)
 ;; find all persons in Pune
-(find-all-persons :find)
-(def all-persons-in-pune
+(defn all-persons-in-pune
+  []
   ((dt/api :qu) '[:find ?its
                 :where
                 [?person :person/its ?its]
-                [?person :person/in-pune true]]))
-;; find all persons in Pune and taking thaali barakat
+                [?person :person/in-poona? true]]))
 
-((:entity dt/api) 17592186045444)
+;; find all persons in Pune and receiving thaali barakat
+(defn persons-receiving-thaali
+  []
+  ((dt/api :qu) '[:find ?its
+                :where
+                [?person :person/its ?its]
+                [?person :person/in-poona? true]
+                [?person :person/receives-thaali? true]]))
+
+;; find all persons in Pune and not receiving thaali barakat
+(defn persons-not-receiving-thaali
+  []
+  ((dt/api :qu) '[:find ?its
+                :where
+                [?person :person/its ?its]
+                [?person :person/in-poona? true]
+                [?person :person/receives-thaali? false]]))
 
 (defn attr-missing?
   [db eid attr]
@@ -72,10 +95,6 @@
                 [?all-p :person/address ?add]
                 []]
    its))
-
-
-
-
 
 ;; a hub object is created when a new thaali is started
 

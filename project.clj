@@ -19,10 +19,10 @@
                  [org.clojure/core.async "0.1.267.0-0d7780-alpha"]]
   :plugins [[lein-ring "0.8.7"]
             [lein-cljsbuild "1.0.0"]]
-  :hooks [leiningen.cljsbuild]
-  :ring {:handler sample.handler/war-handler
-         :init    sample.handler/init
-         :destroy sample.handler/destroy}
+  ;;:hooks [leiningen.cljsbuild]
+  :ring {:handler faiz.handler/war-handler
+         :init    faiz.handler/init
+         :destroy faiz.handler/destroy}
   :resource-paths ["resources"]
   :profiles {:production {:ring {:open-browser? false
                                  :stacktraces?  false
