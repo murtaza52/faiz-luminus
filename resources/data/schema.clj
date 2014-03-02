@@ -1,6 +1,5 @@
 [
  ;;Person
-
  {:db/id #db/id[:db.part/db]
   :db/ident :person/first-name
   :db/valueType :db.type/string
@@ -403,56 +402,90 @@
 [:db/add #db/id[:db.part/user] :db/ident :common.entity-type/thaali]
 [:db/add #db/id[:db.part/user] :db/ident :common.entity-type/hub]
 
+;; Financial Year
+{:db/id #db/id[:db.part/db]
+ :db/ident :financial-year/hijri-year
+ :db/valueType :db.type/string
+ :db/cardinality :db.cardinality/one
+ :db/unique :db.unique/identity
+ :db/doc "Hijri Year"
+ :db.install/_attribute :db.part/db}
+
+{:db/id #db/id[:db.part/db]
+ :db/ident :financial-year/start-date
+ :db/valueType :db.type/instant
+ :db/cardinality :db.cardinality/one
+ :db/doc "Start date of the financial year."
+ :db.install/_attribute :db.part/db}
+
+{:db/id #db/id[:db.part/db]
+ :db/ident :financial-year/end-date
+ :db/valueType :db.type/instant
+ :db/cardinality :db.cardinality/one
+ :db/doc "End date of the financial year."
+ :db.install/_attribute :db.part/db}
+
 ;; Hub
-
 {:db/id #db/id[:db.part/db]
- :db/ident :hub/pledged
+ :db/ident :hub-commitment/amount
  :db/valueType :db.type/long
  :db/cardinality :db.cardinality/one
- :db/doc "Hub Pledged"
+ :db/doc "Total amount of yearly hub commitment"
  :db.install/_attribute :db.part/db}
 
 {:db/id #db/id[:db.part/db]
- :db/ident :hub/person
- :db/valueType :db.type/ref
- :db/cardinality :db.cardinality/one
- :db/doc "The person for which the hub was received / or by whom the hub was pledged."
- :db.install/_attribute :db.part/db}
-
- {:db/id #db/id[:db.part/db]
- :db/ident :hub/for
- :db/valueType :db.type/ref
- :db/cardinality :db.cardinality/one
- :db/doc "The person for which the hub was received / or by whom the hub was pledged."
- :db.install/_attribute :db.part/db}
-
-
-{:db/id #db/id[:db.part/db]
- :db/ident :hub/amount-received
+ :db/ident :hub-commitment/year
  :db/valueType :db.type/long
  :db/cardinality :db.cardinality/one
- :db/doc "Hub Amount Received"
+ :db/doc "Yearly hub commitment"
  :db.install/_attribute :db.part/db}
 
 {:db/id #db/id[:db.part/db]
- :db/ident :hub/received-on
- :db/valueType :db.type/string
- :db/cardinality :db.cardinality/one
- :db/doc "Hub Amount Received On"
+ :db/ident :hub-commitment/schedule
+ :db/valueType :db.type/ref
+ :db/cardinality :db.cardinality/many
+ :db/doc "Array of hub schedules for a particular commitment."
  :db.install/_attribute :db.part/db}
 
 {:db/id #db/id[:db.part/db]
- :db/ident :hub/received-by
- :db/valueType :db.type/string
+ :db/ident :hub-schedule/due-date
+ :db/valueType :db.type/instant
  :db/cardinality :db.cardinality/one
- :db/doc "Hub Amount Received"
+ :db/doc "Date when the hub amount will be paid."
  :db.install/_attribute :db.part/db}
 
 {:db/id #db/id[:db.part/db]
- :db/ident :hub/due-date
- :db/valueType :db.type/string
+ :db/ident :hub-schedule/amount
+ :db/valueType :db.type/long
  :db/cardinality :db.cardinality/one
- :db/doc "Hub Due Date"
+ :db/doc "Amount to be paid."
  :db.install/_attribute :db.part/db}
 
+{:db/id #db/id[:db.part/db]
+ :db/ident :hub-received/by
+ :db/valueType :db.type/ref
+ :db/cardinality :db.cardinality/one
+ :db/doc "The person receiving the hub."
+ :db.install/_attribute :db.part/db}
+
+{:db/id #db/id[:db.part/db]
+ :db/ident :hub-received/amount
+ :db/valueType :db.type/long
+ :db/cardinality :db.cardinality/one
+ :db/doc "Amount of hub received."
+ :db.install/_attribute :db.part/db}
+
+{:db/id #db/id[:db.part/db]
+ :db/ident :hub-received/on
+ :db/valueType :db.type/instant
+ :db/cardinality :db.cardinality/one
+ :db/doc "Date on which hub amount was received."
+ :db.install/_attribute :db.part/db}
+
+{:db/id #db/id[:db.part/db]
+ :db/ident :hub-received/for
+ :db/valueType :db.type/ref
+ :db/cardinality :db.cardinality/one
+ :db/doc "Commitment for which hub amount is received."
+ :db.install/_attribute :db.part/db}
 ]

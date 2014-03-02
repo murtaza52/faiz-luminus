@@ -6,7 +6,6 @@
             [schema.core :as s]
             [faiz.utils :as utils]))
 
-
 (defn reset-db!
   [uri]
   (d/delete-database uri)
