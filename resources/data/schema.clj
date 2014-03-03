@@ -425,7 +425,7 @@
  :db/doc "End date of the financial year."
  :db.install/_attribute :db.part/db}
 
-;; Hub
+;; Hub Commitment
 {:db/id #db/id[:db.part/db]
  :db/ident :hub-commitment/amount
  :db/valueType :db.type/long
@@ -434,8 +434,8 @@
  :db.install/_attribute :db.part/db}
 
 {:db/id #db/id[:db.part/db]
- :db/ident :hub-commitment/year
- :db/valueType :db.type/long
+ :db/ident :hub-commitment/financial-year
+ :db/valueType :db.type/ref
  :db/cardinality :db.cardinality/one
  :db/doc "Yearly hub commitment"
  :db.install/_attribute :db.part/db}
@@ -447,6 +447,14 @@
  :db/doc "Array of hub schedules for a particular commitment."
  :db.install/_attribute :db.part/db}
 
+{:db/id #db/id[:db.part/db]
+ :db/ident :hub-commitment/persons
+ :db/valueType :db.type/ref
+ :db/cardinality :db.cardinality/many
+ :db/doc "Array of hub schedules for a particular commitment."
+ :db.install/_attribute :db.part/db}
+
+;;Hub Schedule
 {:db/id #db/id[:db.part/db]
  :db/ident :hub-schedule/due-date
  :db/valueType :db.type/instant
@@ -461,6 +469,7 @@
  :db/doc "Amount to be paid."
  :db.install/_attribute :db.part/db}
 
+;; Hub Received
 {:db/id #db/id[:db.part/db]
  :db/ident :hub-received/by
  :db/valueType :db.type/ref
