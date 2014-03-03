@@ -1,6 +1,6 @@
 [
 
-  ;;thaali
+ ;;thaali
 
  ;; treat thaalis as a continum.
  ;; retrieve a thaalis history to see its start and stop dates.
@@ -44,43 +44,48 @@
 
 ;;;;person
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;   {:db/id #db/id[:db.part/user -1000009]
-;;    :common/entity-type :common.entity-type/person
-;;    :person/first-name "Murtaza"
-;;    :person/middle-name "Shabbir"
-;;    :person/last-name "Rampurawala"
-;;    :person/its 20341280
-;;    :person/mobile 9923109052
-;;    :person/email "abc@abc.com"
-;;    :person/in-poona? true
-;;    :person/receives-thaali? true
-;;    :person/address #db/id[:db.part/user -1000005]}
+  {:db/id #db/id[:db.part/user -1000009]
+   :common/entity-type :common.entity-type/person
+   :person/first-name "Murtaza"
+   :person/middle-name "Shabbir"
+   :person/last-name "Rampurawala"
+   :person/its 20341280
+   :person/mobile 9923109052
+   :person/email "abc@abc.com"
+   :person/in-poona? true
+   :person/receives-thaali? true
+   :person/address #db/id[:db.part/user -1000005]}
 
-;;   {:db/id #db/id[:db.part/user -1000010]
-;;    :person/first-name "Batul"
-;;    :person/middle-name "M Murtaza"
-;;    :person/last-name "Rampurawala"
-;;    :person/its 20359401
-;;    :person/mobile 9923589052
-;;    :person/email "abc@abc.com"
-;;    :person/in-poona? true
-;;    :person/receives-thaali? false
-;;    :person/address #db/id[:db.part/user -1000005]}
+  {:db/id #db/id[:db.part/user -1000010]
+   :person/first-name "Batul"
+   :person/middle-name "M Murtaza"
+   :person/last-name "Rampurawala"
+   :person/its 20359401
+   :person/mobile 9923589052
+   :person/email "abc@abc.com"
+   :person/in-poona? true
+   :person/receives-thaali? false
+   :person/address #db/id[:db.part/user -1000005]}
 
-;;  {:db/id #db/id[:db.part/user -1000005]
-;;   :address/area "Salunke Vihaar"
-;;   :address/street "NIBM"
-;;   :address/landmark "ABC Farms"
-;;   :address/society "GV Gardens"
-;;   :address/building "A5"
-;;   :address/floor "4"
-;;   :address/flat-num "206"}
+ {:db/id #db/id[:db.part/user -1000005]
+  :address/area "Salunke Vihaar"
+  :address/street "NIBM"
+  :address/landmark "ABC Farms"
+  :address/society "GV Gardens"
+  :address/building "A5"
+  :address/floor "4"
+  :address/flat-num "206"}
 
-;;  {:db/id #db/id[:db.part/user -1000020]
-;;   :group/name "Saifee"
-;;   :group/addresses [#db/id[:db.part/user -1000005]]
-;;   :group/musaid #db/id[:db.part/user -1000009]
-;;   :group/coordinator #db/id[:db.part/user -1000010]}
+ {:db/id #db/id[:db.part/user -1000020]
+  :group/name "Saifee"
+  :group/addresses [#db/id[:db.part/user -1000005]]
+  :group/musaid #db/id[:db.part/user -1000009]
+  :group/coordinator #db/id[:db.part/user -1000010]}
+
+ {:db/id #db/id[:db.part/user]
+  :financial-year/hijri-year "1435 - 1436"
+  :financial-year/start-date #inst "2014-02-01T00:00:00.000-00:00"
+  :financial-year/end-date #inst "2015-02-01T00:00:00.000-00:00"}
 
 ;;  {:db/id #db/id[:db.part/user -1000002]
 ;;   :thaali/size :thaali.size/half
@@ -102,7 +107,7 @@
 ;;   :thaali/stopped-on "10-04-13"
 ;;   :thaali/address #db/id[:db.part/user -1000005]}
 
- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;   {:db/id #db/id[:db.part/user -1000031]
 ;;   :hub/person #db/id[:db.part/user -1000009]
 ;;   :hub/pledged 1650
@@ -157,4 +162,5 @@
 
 
 
-]
+])
+

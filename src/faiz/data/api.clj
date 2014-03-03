@@ -96,17 +96,13 @@
                 []]
    its))
 
-;; a hub object is created when a new thaali is started
+;; all active thaalis full / half / total / pickup / transport
 
+;; days for which each thaali was active in the current month.
 
-
-;; retrieve all pending hubs for a particular
-()
-
+;; retrieve all pending hubs for a particular address / musaid / coordinator / all
 
 ;; retrieve thaalis that were active during a month
-
-
 
 ;; retrieve currently active thaalis
 
