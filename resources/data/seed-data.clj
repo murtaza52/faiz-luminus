@@ -67,6 +67,17 @@
    :person/receives-thaali? false
    :person/address #db/id[:db.part/user -1000005]}
 
+ {:db/id #db/id[:db.part/user -1000011]
+   :person/first-name "Batul"
+   :person/middle-name "M Murtaza"
+   :person/last-name "Rampurawala"
+   :person/its 20359402
+   :person/mobile 9923589052
+   :person/email "abc@abc.com"
+   :person/in-poona? true
+   :person/receives-thaali? false
+   :person/address #db/id[:db.part/user -1000005]}
+
  {:db/id #db/id[:db.part/user -1000005]
   :address/area "Salunke Vihaar"
   :address/street "NIBM"
@@ -82,10 +93,10 @@
   :group/musaid #db/id[:db.part/user -1000009]
   :group/coordinator #db/id[:db.part/user -1000010]}
 
- {:db/id #db/id[:db.part/user -1000030]
-  :financial-year/hijri-year "1435 - 1436"
-  :financial-year/start-date #inst "2014-02-01T00:00:00.000-00:00"
-  :financial-year/end-date #inst "2015-02-01T00:00:00.000-00:00"}
+;;  {:db/id #db/id[:db.part/user -1000030]
+;;   :financial-year/hijri-year :financial-year.year/1435-1436
+;;   :financial-year/start-date #inst "2014-02-01T00:00:00.000-00:00"
+;;   :financial-year/end-date #inst "2015-02-01T00:00:00.000-00:00"}
 
  {:db/id #db/id[:db.part/user -1000050]
   :hub-schedule/due-date #inst "2014-03-01T00:00:00.000-00:00"
@@ -99,14 +110,31 @@
   :hub-schedule/due-date #inst "2014-05-01T00:00:00.000-00:00"
   :hub-schedule/amount 20000}
 
+  {:db/id #db/id[:db.part/user -1000053]
+  :hub-schedule/due-date #inst "2014-04-01T00:00:00.000-00:00"
+  :hub-schedule/amount 10000}
+
+ {:db/id #db/id[:db.part/user -1000054]
+  :hub-schedule/due-date #inst "2014-05-01T00:00:00.000-00:00"
+  :hub-schedule/amount 11000}
+
  {:db/id #db/id[:db.part/user -1000040]
-  :hub-commitment/financial-year #db/id[:db.part/user -1000030]
-  :hub-commitment/persons [#db/id[:db.part/user -1000009]]
-  :hub-schedule/amount 52000
+  :hub-commitment/financial-year :1435-1436
+  :hub-commitment/person #db/id[:db.part/user -1000009]
+
+  :hub-commitment/amount 52000
   :hub-commitment/schedule [#db/id[:db.part/user -1000050]
                             #db/id[:db.part/user -1000051]
                             #db/id[:db.part/user -1000052]]}
 
+
+
+  {:db/id #db/id[:db.part/user -1000041]
+  :hub-commitment/financial-year :1435-1436
+  :hub-commitment/person #db/id[:db.part/user -1000011]
+  :hub-commitment/amount 21000
+  :hub-commitment/schedule [#db/id[:db.part/user -1000053]
+                            #db/id[:db.part/user -1000054]]}
 
 ;;  {:db/id #db/id[:db.part/user -1000002]
 ;;   :thaali/size :thaali.size/half

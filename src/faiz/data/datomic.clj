@@ -27,12 +27,11 @@
   "Function for querying"
   ([conn clause]
      (d/q clause
-        (d/db conn)))
+          (d/db conn)))
   ([conn clause & p]
-     (apply d/q
-            clause
-            (d/db conn)
-            p)))
+     (apply d/q clause
+                (d/db conn)
+                p)))
 
 (defn id->entity
   [conn ids]

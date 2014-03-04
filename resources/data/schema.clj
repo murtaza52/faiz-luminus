@@ -403,27 +403,28 @@
 [:db/add #db/id[:db.part/user] :db/ident :common.entity-type/hub]
 
 ;; Financial Year
-{:db/id #db/id[:db.part/db]
- :db/ident :financial-year/hijri-year
- :db/valueType :db.type/string
- :db/cardinality :db.cardinality/one
- :db/unique :db.unique/identity
- :db/doc "Hijri Year"
- :db.install/_attribute :db.part/db}
+;; {:db/id #db/id[:db.part/db]
+;;  :db/ident :financial-year/year
+;;  :db/valueType :db.type/keyword
+;;  :db/cardinality :db.cardinality/one
+;;  :db/doc "Hijri Year"
+;;  :db.install/_attribute :db.part/db}
 
-{:db/id #db/id[:db.part/db]
- :db/ident :financial-year/start-date
- :db/valueType :db.type/instant
- :db/cardinality :db.cardinality/one
- :db/doc "Start date of the financial year."
- :db.install/_attribute :db.part/db}
+;[:db/add #db/id[:db.part/user] :db/ident :financial-year.year/1435-1436]
 
-{:db/id #db/id[:db.part/db]
- :db/ident :financial-year/end-date
- :db/valueType :db.type/instant
- :db/cardinality :db.cardinality/one
- :db/doc "End date of the financial year."
- :db.install/_attribute :db.part/db}
+;; {:db/id #db/id[:db.part/db]
+;;  :db/ident :financial-year/start-date
+;;  :db/valueType :db.type/instant
+;;  :db/cardinality :db.cardinality/one
+;;  :db/doc "Start date of the financial year."
+;;  :db.install/_attribute :db.part/db}
+
+;; {:db/id #db/id[:db.part/db]
+;;  :db/ident :financial-year/end-date
+;;  :db/valueType :db.type/instant
+;;  :db/cardinality :db.cardinality/one
+;;  :db/doc "End date of the financial year."
+;;  :db.install/_attribute :db.part/db}
 
 ;; Hub Commitment
 {:db/id #db/id[:db.part/db]
@@ -435,7 +436,7 @@
 
 {:db/id #db/id[:db.part/db]
  :db/ident :hub-commitment/financial-year
- :db/valueType :db.type/ref
+ :db/valueType :db.type/keyword
  :db/cardinality :db.cardinality/one
  :db/doc "Yearly hub commitment"
  :db.install/_attribute :db.part/db}
@@ -448,9 +449,9 @@
  :db.install/_attribute :db.part/db}
 
 {:db/id #db/id[:db.part/db]
- :db/ident :hub-commitment/persons
+ :db/ident :hub-commitment/person
  :db/valueType :db.type/ref
- :db/cardinality :db.cardinality/many
+ :db/cardinality :db.cardinality/one
  :db/doc "Array of hub schedules for a particular commitment."
  :db.install/_attribute :db.part/db}
 

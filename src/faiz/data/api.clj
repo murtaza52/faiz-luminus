@@ -72,6 +72,8 @@
                 [?person :person/in-poona? true]
                 [?person :person/receives-thaali? true]]))
 
+(persons-receiving-thaali)
+
 ;; find all persons in Pune and not receiving thaali barakat
 (defn persons-not-receiving-thaali
   []
@@ -92,9 +94,39 @@
                 :where
                 [?p :person/its ?its]
                 [?p :person/address ?add]
-                [?all-p :person/address ?add]
-                []]
+                [?all-p :person/address ?add]]
    its))
+
+
+;; total commitment for the financial year
+
+(defn total-commitment
+  ([year] (ffirst ((dt/api :qu) '[:find (sum ?amount)
+                                  :in $ ?year
+                                  :where
+                                  [?y :hub-commitment/financial-year ?year]
+                                  [?y :hub-commitment/amount ?amount]]
+                                year)))
+  ([year its] (ffirst ((dt/api :qu) '[:find ?amount
+                                      :in $ ?year ?its
+                                      :where
+                                      [?p :person/its ?its]
+                                      [?y :hub-commitment/person ?p]
+                                      [?y :hub-commitment/financial-year ?year]
+                                      [?y :hub-commitment/amount ?amount]]
+                                    year its))))
+
+
+(total-commitment :1435-1436)
+
+(total-commitment :1435-1436 20359401)
+
+
+;; amount over due
+
+;; payment history for a person
+
+
 
 ;; all active thaalis full / half / total / pickup / transport
 
