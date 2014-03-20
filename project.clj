@@ -29,7 +29,8 @@
                                  :stacktraces?  false
                                  :auto-reload?  false}}
              :dev {:dependencies [[ring-mock "0.1.5"]
-                                  [ring/ring-devel "1.2.0"]]}}
+                                  [http-kit "2.1.18"]
+                                  [clj-http "0.9.1"]]}}
   :cljsbuild
   {:builds [{:source-paths ["src-cljs"]
              :compiler {:output-to "resources/public/js/site.js"

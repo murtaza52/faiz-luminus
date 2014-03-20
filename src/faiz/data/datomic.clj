@@ -26,18 +26,18 @@
 (defn qu
   "Function for querying"
   ([conn clause]
-     (d/q clause
-          (d/db conn)))
+   (d/q clause
+        (d/db conn)))
   ([conn clause & p]
-     (apply d/q clause
-                (d/db conn)
-                p)))
+   (apply d/q clause
+          (d/db conn)
+          p)))
 
 (defn id->entity
   [conn ids]
   (doall
-    (map #(d/entity (d/db conn) (first %))
-         ids)))
+   (map #(d/entity (d/db conn) (first %))
+        ids)))
 
 (defn realize-en
   [en-maps]
@@ -65,36 +65,17 @@
 
 (def dt
   (graph/eager-compile
-    (graph/graph
-     :reset (fnk [uri] (reset-db! uri))
-     :conn (fnk [uri] (d/connect uri))
-     :add-data (fnk [conn] (partial add-data conn))
-     :schema-res (fnk [schema add-data] (doall (map add-data schema)))
-     :seed-data-res (fnk [seed-data add-data] (doall (map add-data seed-data)))
-     :qu (fnk [conn] (partial qu conn))
-     :id->entity (fnk [conn] (partial id->entity conn))
-     :entity (fnk[conn] (fn[id] (d/entity (d/db conn) id)))
-     :find-en (fnk [qu id->entity] (fn [clause param] ((comp realize-en id->entity qu) clause param)))
-     :upsert-en (fnk [conn] (partial upsert-en conn)))))
+   (graph/graph
+    :reset (fnk [uri] (reset-db! uri))
+    :conn (fnk [uri] (d/connect uri))
+    :add-data (fnk [conn] (partial add-data conn))
+    :schema-res (fnk [schema add-data] (doall (map add-data schema)))
+    :seed-data-res (fnk [seed-data add-data] (doall (map add-data seed-data)))
+    :qu (fnk [conn] (partial qu conn))
+    :id->entity (fnk [conn] (partial id->entity conn))
+    :entity (fnk[conn] (fn[id] (d/entity (d/db conn) id)))
+    :find-en (fnk [qu id->entity] (fn [clause param] ((comp realize-en id->entity qu) clause param)))
+    :upsert-en (fnk [conn] (partial upsert-en conn)))))
 
 (def api (-> (config) :db dt))
-
-(comment
-
-  ((api :cr-en) {
-                  :person/first-name "Murtaza"
-                  :person/middle-name "Shabbir"
-                  :person/last-name "Rampurawala"
-                  :person/its 20341282
-                  :person/mobile 9923109052
-                  :person/email "abc@abc.com"})
-
-  ((api :qu)
-   '[:find ?e
-     :where
-     [?e :person/its _]])
-
-  (def en ((api :get-entity-map) #{[17592186045433] [17592186045434] [17592186045437]}))
-  (-> en first type)
-  )
 

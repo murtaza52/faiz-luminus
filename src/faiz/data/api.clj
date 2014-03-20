@@ -99,7 +99,6 @@
 
 
 ;; total commitment for the financial year
-
 (defn total-commitment
   ([year] (ffirst ((dt/api :qu) '[:find (sum ?amount)
                                   :in $ ?year
