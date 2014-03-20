@@ -87,6 +87,7 @@
   :address/floor "4"
   :address/flat-num "206"}
 
+ ;; Define a group
  {:db/id #db/id[:db.part/user -1000020]
   :group/name "Saifee"
   :group/addresses [#db/id[:db.part/user -1000005]]
@@ -98,6 +99,8 @@
 ;;   :financial-year/start-date #inst "2014-02-01T00:00:00.000-00:00"
 ;;   :financial-year/end-date #inst "2015-02-01T00:00:00.000-00:00"}
 
+
+ ;; Hub schedules for a person
  {:db/id #db/id[:db.part/user -1000050]
   :hub-schedule/due-date #inst "2014-03-01T00:00:00.000-00:00"
   :hub-schedule/amount 2000}
@@ -118,16 +121,15 @@
   :hub-schedule/due-date #inst "2014-05-01T00:00:00.000-00:00"
   :hub-schedule/amount 11000}
 
+
+ ;; Hub commitment including the schedules.
  {:db/id #db/id[:db.part/user -1000040]
   :hub-commitment/financial-year :1435-1436
   :hub-commitment/person #db/id[:db.part/user -1000009]
-
   :hub-commitment/amount 52000
   :hub-commitment/schedule [#db/id[:db.part/user -1000050]
                             #db/id[:db.part/user -1000051]
                             #db/id[:db.part/user -1000052]]}
-
-
 
   {:db/id #db/id[:db.part/user -1000041]
   :hub-commitment/financial-year :1435-1436

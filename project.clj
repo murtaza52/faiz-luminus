@@ -30,7 +30,8 @@
                                  :auto-reload?  false}}
              :dev {:dependencies [[ring-mock "0.1.5"]
                                   [http-kit "2.1.18"]
-                                  [clj-http "0.9.1"]]}}
+                                  [clj-http "0.9.1"]
+                                  [midje "1.6.3"]]}}
   :cljsbuild
   {:builds [{:source-paths ["src-cljs"]
              :compiler {:output-to "resources/public/js/site.js"

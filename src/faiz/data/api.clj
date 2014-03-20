@@ -2,7 +2,6 @@
   (:require [faiz.data.datomic :as dt]
             [datomic.api :as d]))
 
-
 (def search-clause '[:find ?e
                      :in $ ?v
                      :where])
@@ -116,15 +115,9 @@
                                     year its))))
 
 
-(total-commitment :1435-1436)
-
-(total-commitment :1435-1436 20359401)
-
-
 ;; amount over due
 
 ;; payment history for a person
-
 
 
 ;; all active thaalis full / half / total / pickup / transport

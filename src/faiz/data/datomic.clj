@@ -64,7 +64,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;; Graph ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (def dt
-  (graph/eager-compile
+  (graph/lazy-compile
    (graph/graph
     :reset (fnk [uri] (reset-db! uri))
     :conn (fnk [uri] (d/connect uri))
@@ -77,5 +77,5 @@
     :find-en (fnk [qu id->entity] (fn [clause param] ((comp realize-en id->entity qu) clause param)))
     :upsert-en (fnk [conn] (partial upsert-en conn)))))
 
-(def api (-> (config) :db dt))
+(defonce api (-> (config) :db dt))
 
