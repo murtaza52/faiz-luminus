@@ -71,8 +71,6 @@
                 [?person :person/in-poona? true]
                 [?person :person/receives-thaali? true]]))
 
-(persons-receiving-thaali)
-
 ;; find all persons in Pune and not receiving thaali barakat
 (defn persons-not-receiving-thaali
   []
@@ -81,6 +79,8 @@
                 [?person :person/its ?its]
                 [?person :person/in-poona? true]
                 [?person :person/receives-thaali? false]]))
+
+(persons-not-receiving-thaali)
 
 (defn attr-missing?
   [db eid attr]

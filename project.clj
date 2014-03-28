@@ -17,14 +17,19 @@
                  [org.clojure/clojurescript "0.0-2030"]
                  [prismatic/dommy "0.1.2"]
                  [org.clojure/core.async "0.1.267.0-0d7780-alpha"]
-                 [clj-time "0.6.0"]]
+                 [clj-time "0.6.0"]
+                 [org.clojure/tools.nrepl "0.2.3"]
+                 [local/camel-snake-kebab "1.1"]]
   :plugins [[lein-ring "0.8.7"]
-            [lein-cljsbuild "1.0.0"]]
+            [lein-cljsbuild "1.0.0"]
+            [lein-gorilla "0.2.0"]]
   ;;:hooks [leiningen.cljsbuild]
+  :main faiz.init
   :ring {:handler faiz.handler/war-handler
          :init    faiz.handler/init
          :destroy faiz.handler/destroy}
   :resource-paths ["resources"]
+  :repositories {"project" "file:repo"}
   :profiles {:production {:ring {:open-browser? false
                                  :stacktraces?  false
                                  :auto-reload?  false}}
