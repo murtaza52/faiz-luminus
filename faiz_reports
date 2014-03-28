@@ -1,0 +1,39 @@
+;; gorilla-repl.fileformat = 1
+
+;; **
+;;; # Faiz-ul-Mawaid-il-Burhaniyah
+;;; ## Data Entry Sheet
+;;;
+;;; Welcome to Faiz-ul-Mawaid-il-Burhaniyah. Press :-) Shift + enter evaluates code. Poke the question mark (top right) to learn more ...
+;; **
+
+;; @@
+(use 'faiz.gorilla-api)
+;; @@
+;; =>
+;;; {"type":"html","content":"<span class='clj-nil'>nil</span>","value":"nil"}
+;; <=
+
+;; @@
+(def new-person {:})
+;; @@
+
+;; @@
+
+;; @@
+;; =>
+;;; {"type":"html","content":"<span class='clj-var'>#&#x27;user/filter-person</span>","value":"#'user/filter-person"}
+;; <=
+
+;; **
+;;; ####Mumineen not Receiving Thaali
+;; **
+
+;; @@
+(mumineen-not-receiving-thaali)
+
+;; @@
+
+;; @@
+()
+;; @@
