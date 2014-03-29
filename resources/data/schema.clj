@@ -427,6 +427,7 @@
 ;;  :db.install/_attribute :db.part/db}
 
 ;; Hub Commitment
+
 {:db/id #db/id[:db.part/db]
  :db/ident :hub-commitment/amount
  :db/valueType :db.type/long
@@ -442,20 +443,21 @@
  :db.install/_attribute :db.part/db}
 
 {:db/id #db/id[:db.part/db]
- :db/ident :hub-commitment/schedule
- :db/valueType :db.type/ref
- :db/cardinality :db.cardinality/many
- :db/doc "Array of hub schedules for a particular commitment."
- :db.install/_attribute :db.part/db}
-
-{:db/id #db/id[:db.part/db]
  :db/ident :hub-commitment/person
  :db/valueType :db.type/ref
  :db/cardinality :db.cardinality/one
- :db/doc "Array of hub schedules for a particular commitment."
+ :db/doc "The person commiting the hub amount."
  :db.install/_attribute :db.part/db}
 
 ;;Hub Schedule
+
+{:db/id #db/id[:db.part/db]
+ :db/ident :hub-commitment/id
+ :db/valueType :db.type/ref
+ :db/cardinality :db.cardinality/one
+ :db/doc "The id of he hub commitment for which this is a schedule."
+ :db.install/_attribute :db.part/db}
+
 {:db/id #db/id[:db.part/db]
  :db/ident :hub-schedule/due-date
  :db/valueType :db.type/instant

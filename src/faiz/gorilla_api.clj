@@ -9,10 +9,19 @@
 
 (def remove-entity-type #(dissoc % :common/entity-type))
 
-(defn find-generic [k v]
-  (cond
-      (= k :db/id) #{[v]}
-      :else ((api/find-en k) v)))
+(defmulti search (fn [& p] (first p)))
+
+(defmethod search :db/id
+  [_ v]
+  #{[v]})
+
+(defmethod search :all
+  [_ v]
+  (api/find-all v))
+
+(defmethod search :default
+  [k v]
+  (api/find-en k v))
 
 (defn format-entities [coll]
   (->>
@@ -30,25 +39,12 @@
                 api/get-en
                 find-generic))
 
+(defn create-me [m]
+  (api/upsert-en m))
+
 (def persons-not-receiving-thaali (comp
                                      print-en
                                      format-entities
                                      api/get-en
                                      api/persons-not-receiving-thaali))
 
-(persons-not-receiving-thaali)
-
-(defn create-me [m]
-  (api/upsert-en m))
-
-(api/get-en #{[17592186045442]})
-
-(find-generic :person/its 20341280)
-
-(find-me :db/id 17592186045442)
-
-;; Four different concerns of the API
-;; search for entity
-;; realize the entity
-;; format the entity
-;; display the entity

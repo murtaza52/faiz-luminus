@@ -15,96 +15,67 @@
 ;; <=
 
 ;; @@
-(def new-person 
+;; Define a new address
+
+(def address
+ {:address/area "Salunke Vihaar"
+  :address/street "NIBM"
+  :address/landmark "ABC Farms"
+  :address/society "GV Gardens"
+  :address/building "A5"
+  :address/floor "4"
+  :address/flat-num "206"})
+;; @@
+;; =>
+;;; {"type":"html","content":"<span class='clj-var'>#&#x27;user/address</span>","value":"#'user/address"}
+;; <=
+
+;; @@
+;; Save the address
+
+(create-me address)
+;; @@
+;; =>
+;;; {"type":"html","content":"<span class='clj-unkown'>{:db/id 17592186045489}</span>","value":"{:db/id 17592186045489}"}
+;; <=
+
+;; @@
+;; Define a new person, include the :db/id of the address saved above. 
+
+(def person 
   {:common/entity-type :common.entity-type/person
    :person/first-name "Mustafa"
    :person/middle-name "Shoeb"
    :person/last-name "Saoroda"
-   :person/its 20341111
+   :person/its 20341112
    :person/mobile 9923109056
-   :person/email "abc@abc.com"})
+   :person/email "abc@abc.com"
+   :person/address {:db/id 17592186045489}})
 ;; @@
 ;; =>
-;;; {"type":"html","content":"<span class='clj-var'>#&#x27;user/new-person</span>","value":"#'user/new-person"}
-;; <=
-
-;; **
-;;; ####Mumineen not Receiving Thaali
-;; **
-
-;; @@
-(persons-not-receiving-thaali)
-
-;; @@
-;; ->
-;;; 
-;;; | Receives Thaali ? |     Mobile | In Poona ? |      Its |                 Address |   Last Name | Middle Name | First Name |       Email |
-;;; |-------------------+------------+------------+----------+-------------------------+-------------+-------------+------------+-------------|
-;;; |             false | 9923589052 |       true | 20359401 | {:db/id 17592186045442} | Rampurawala |   M Murtaza |      Batul | abc@abc.com |
-;;; |             false | 9923589052 |       true | 20359402 | {:db/id 17592186045442} | Rampurawala |   M Murtaza |      Batul | abc@abc.com |
-;;; 
-;; <-
-;; =>
-;;; {"type":"html","content":"<span class='clj-nil'>nil</span>","value":"nil"}
+;;; {"type":"html","content":"<span class='clj-var'>#&#x27;user/person</span>","value":"#'user/person"}
 ;; <=
 
 ;; @@
-(upsert-en new-person)
+;; Save the person
+
+(create-me person)
 ;; @@
 ;; =>
-;;; {"type":"html","content":"<span class='clj-unkown'>{:db/id 17592186045476}</span>","value":"{:db/id 17592186045476}"}
+;;; {"type":"html","content":"<span class='clj-unkown'>{:db/id 17592186045493}</span>","value":"{:db/id 17592186045493}"}
 ;; <=
 
-;; **
-;;; ##### Search for a mumin using ITS
-;; **
-
 ;; @@
-(find-me :person/its 20341111)
-;; @@
-;; ->
-;;; 
-;;; |       Email |     Mobile |      Its | Last Name | Middle Name | First Name |
-;;; |-------------+------------+----------+-----------+-------------+------------|
-;;; | abc@abc.com | 9923109056 | 20341111 |   Saoroda |       Shoeb |    Mustafa |
-;;; 
-;; <-
-;; =>
-;;; {"type":"html","content":"<span class='clj-nil'>nil</span>","value":"nil"}
-;; <=
+;; Search for the person, saved above. A person can be searched using any of its attributes - :person/its , :person/mobile , :person/first-name etc 
 
-;; **
-;;; ##### Search for a mumin using mobile.
-;;; 
-;; **
-
-;; @@
 (find-me :person/mobile 9923109056)
 ;; @@
 ;; ->
 ;;; 
-;;; |       Email |     Mobile |      Its | Last Name | Middle Name | First Name |
-;;; |-------------+------------+----------+-----------+-------------+------------|
-;;; | abc@abc.com | 9923109056 | 20341111 |   Saoroda |       Shoeb |    Mustafa |
-;;; 
-;; <-
-;; =>
-;;; {"type":"html","content":"<span class='clj-nil'>nil</span>","value":"nil"}
-;; <=
-
-;; **
-;;; ##### Search using the :db/id 
-;;; ##### (This can be used to search for entities such as the address, or a recently added entity)
-;; **
-
-;; @@
-(find-me :db/id 17592186045476)
-;; @@
-;; ->
-;;; 
-;;; |       Email |     Mobile |      Its | Last Name | Middle Name | First Name |
-;;; |-------------+------------+----------+-----------+-------------+------------|
-;;; | abc@abc.com | 9923109056 | 20341111 |   Saoroda |       Shoeb |    Mustafa |
+;;; |       Email |     Mobile |                 Address |      Its | Last Name | Middle Name | First Name |
+;;; |-------------+------------+-------------------------+----------+-----------+-------------+------------|
+;;; | abc@abc.com | 9923109056 | {:db/id 17592186045489} | 20341112 |   Saoroda |       Shoeb |    Mustafa |
+;;; | abc@abc.com | 9923109056 | {:db/id 17592186045489} | 20341111 |   Saoroda |       Shoeb |    Mustafa |
 ;;; 
 ;; <-
 ;; =>
@@ -112,12 +83,57 @@
 ;; <=
 
 ;; @@
-(find-me :db/id 17592186045442)
+;; You can search using the :db/id. To retrieve the address for the above person - 
+
+(find-me :db/id 17592186045489)
 ;; @@
 ;; ->
 ;;; 
 ;;; | Street |  Landmark | Flat Num | Floor | Building |    Society |           Area |
 ;;; |--------+-----------+----------+-------+----------+------------+----------------|
+;;; |   NIBM | ABC Farms |      206 |     4 |       A5 | GV Gardens | Salunke Vihaar |
+;;; 
+;; <-
+;; =>
+;;; {"type":"html","content":"<span class='clj-nil'>nil</span>","value":"nil"}
+;; <=
+
+;; @@
+;; You can list all people, thaalis, addresses etc. Use :all as the first parameter, and any attribute as the second parameter.
+
+;; To list all people
+
+(find-me :all :person/its)
+
+;; @@
+;; ->
+;;; 
+;;; |       Email |     Mobile |      Its |   Last Name | Middle Name | First Name |
+;;; |-------------+------------+----------+-------------+-------------+------------|
+;;; | abc@abc.com | 9923109052 | 20341287 | Rampurawala |     Shabbir |    Murtaza |
+;;; |             |            |    20111 |             |             |        abc |
+;;; | abc@abc.com | 9923109052 | 20341280 | Rampurawala |     Shabbir |    Murtaza |
+;;; | abc@abc.com | 9923589052 | 20359401 | Rampurawala |   M Murtaza |      Batul |
+;;; | abc@abc.com | 9923109056 | 20341112 |     Saoroda |       Shoeb |    Mustafa |
+;;; | abc@abc.com | 9923589052 | 20359402 | Rampurawala |   M Murtaza |      Batul |
+;;; | abc@abc.com | 9923109056 | 20341111 |     Saoroda |       Shoeb |    Mustafa |
+;;; 
+;; <-
+;; =>
+;;; {"type":"html","content":"<span class='clj-nil'>nil</span>","value":"nil"}
+;; <=
+
+;; @@
+;; To list all addresses
+
+(find-me :all :address/area)
+;; @@
+;; ->
+;;; 
+;;; | Street |  Landmark | Flat Num | Floor | Building |    Society |           Area |
+;;; |--------+-----------+----------+-------+----------+------------+----------------|
+;;; |   NIBM | ABC Farms |      206 |     4 |       A5 | GV Gardens | Salunke Vihaar |
+;;; |   NIBM | ABC Farms |      206 |     4 |       A5 | GV Gardens | Salunke Vihaar |
 ;;; |   NIBM | ABC Farms |      206 |     4 |       A5 | GV Gardens | Salunke Vihaar |
 ;;; 
 ;; <-

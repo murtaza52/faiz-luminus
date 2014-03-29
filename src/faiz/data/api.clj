@@ -7,10 +7,9 @@
                      :where])
 
 (defn find-en
-  [attribute]
-  (fn [param]
-    ((dt/api :find-en) (merge search-clause (vector '?e attribute '?v))
-                       param)))
+  [attr v]
+  ((dt/api :find-en) (merge search-clause (vector '?e attr '?v))
+                     v))
 
 (defn find-en2
   [attr v]
@@ -22,6 +21,10 @@
 
 ;; (find-en2 :person/its 20341280)
 
+(defn find-all
+  [attr]
+  (let [clause (merge '[:find ?e :where] (vector '?e attr))]
+    ((dt/api :qu) clause)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Search API ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
