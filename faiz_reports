@@ -3,26 +3,30 @@
 ;; **
 ;;; # Faiz-ul-Mawaid-il-Burhaniyah
 ;;; ## Data Entry Sheet
-;;;
+;;; 
 ;;; Welcome to Faiz-ul-Mawaid-il-Burhaniyah. Press :-) Shift + enter evaluates code. Poke the question mark (top right) to learn more ...
 ;; **
 
 ;; @@
-(use 'faiz.gorilla-api)
+(require '[faiz.data.api :refer [upsert-en find-person-by-its]])
+(require '[faiz.gorilla-api :refer :all])
 ;; @@
 ;; =>
 ;;; {"type":"html","content":"<span class='clj-nil'>nil</span>","value":"nil"}
 ;; <=
 
 ;; @@
-(def new-person {:})
-;; @@
-
-;; @@
-
+(def new-person 
+  {:common/entity-type :common.entity-type/person
+   :person/first-name "Mustafa"
+   :person/middle-name "Shoeb"
+   :person/last-name "Saoroda"
+   :person/its 20341111
+   :person/mobile 9923109056
+   :person/email "abc@abc.com"})
 ;; @@
 ;; =>
-;;; {"type":"html","content":"<span class='clj-var'>#&#x27;user/filter-person</span>","value":"#'user/filter-person"}
+;;; {"type":"html","content":"<span class='clj-var'>#&#x27;user/new-person</span>","value":"#'user/new-person"}
 ;; <=
 
 ;; **
@@ -33,7 +37,61 @@
 (mumineen-not-receiving-thaali)
 
 ;; @@
+;; ->
+;;; 
+;;; |     Mobile |      Its |   Last Name | Middle Name | First Name |
+;;; |------------+----------+-------------+-------------+------------|
+;;; | 9923589052 | 20359401 | Rampurawala |   M Murtaza |      Batul |
+;;; | 9923589052 | 20359402 | Rampurawala |   M Murtaza |      Batul |
+;;; 
+;; <-
+;; =>
+;;; {"type":"html","content":"<span class='clj-nil'>nil</span>","value":"nil"}
+;; <=
 
 ;; @@
-()
+(upsert-en new-person)
+;; @@
+;; =>
+;;; {"type":"html","content":"<span class='clj-unkown'>{:db/id 17592186045476}</span>","value":"{:db/id 17592186045476}"}
+;; <=
+
+;; **
+;;; ##### Search for a person using ITS
+;; **
+
+;; @@
+(find-me :person/its 20341111)
+;; @@
+;; ->
+;;; 
+;;; |                Entity Type |       Email |     Mobile |      Its | Last Name | Middle Name | First Name |
+;;; |----------------------------+-------------+------------+----------+-----------+-------------+------------|
+;;; | :common.entity-type/person | abc@abc.com | 9923109056 | 20341111 |   Saoroda |       Shoeb |    Mustafa |
+;;; 
+;; <-
+;; =>
+;;; {"type":"html","content":"<span class='clj-nil'>nil</span>","value":"nil"}
+;; <=
+
+;; @@
+(find-me :person/mobile 9923109056)
+;; @@
+;; ->
+;;; 
+;;; |                Entity Type |       Email |     Mobile |      Its | Last Name | Middle Name | First Name |
+;;; |----------------------------+-------------+------------+----------+-----------+-------------+------------|
+;;; | :common.entity-type/person | abc@abc.com | 9923109056 | 20341111 |   Saoroda |       Shoeb |    Mustafa |
+;;; 
+;; <-
+;; =>
+;;; {"type":"html","content":"<span class='clj-nil'>nil</span>","value":"nil"}
+;; <=
+
+;; @@
+(find-me :db/id 17592186045476)
+;; @@
+
+;; @@
+
 ;; @@

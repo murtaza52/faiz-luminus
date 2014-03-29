@@ -29,6 +29,12 @@
 
 (def realize-person (realize-entities :person/its))
 
+(defn retrieve-by-id [id]
+  (->>
+   id
+   ((dt/api :entity))
+   d/touch))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Search API ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (def find-person-by-its (find-en :person/its))
@@ -71,6 +77,8 @@
                 [?person :person/in-poona? true]
                 [?person :person/receives-thaali? true]]))
 
+(persons-receiving-thaali)
+
 ;; find all persons in Pune and not receiving thaali barakat
 (defn persons-not-receiving-thaali
   []
@@ -79,8 +87,6 @@
                 [?person :person/its ?its]
                 [?person :person/in-poona? true]
                 [?person :person/receives-thaali? false]]))
-
-(persons-not-receiving-thaali)
 
 (defn attr-missing?
   [db eid attr]
@@ -185,7 +191,8 @@
   (upsert-en person1)
 
   )
-(def person1 {
+
+(comment (def person1 {
    :person/first-name "Murtaza"
    :person/middle-name "Shabbir"
    :person/last-name "Rampurawala"
@@ -194,7 +201,9 @@
    :person/email "abc@abc.com"}
 )
 
-(upsert-en person1)
+(upsert-en person1))
+
+
 
 ;(def thaali-mappings
 ;  [:thaali/num
