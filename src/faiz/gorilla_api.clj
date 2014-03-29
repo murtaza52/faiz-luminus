@@ -37,7 +37,7 @@
                 print-en
                 format-entities
                 api/get-en
-                find-generic))
+                search))
 
 (defn create-me [m]
   (api/upsert-en m))

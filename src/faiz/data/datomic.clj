@@ -73,9 +73,7 @@
     :seed-data-res (fnk [seed-data add-data] (doall (map add-data seed-data)))
     :qu (fnk [conn] (partial qu conn))
     :id->entity (fnk [conn] (partial id->entity-2 conn))
-    :entity (fnk[conn] (fn[id] (d/entity (d/db conn) id)))
     :get-en (fnk [id->entity] (comp realize-en id->entity))
-    :find-en (fnk [qu] (fn [clause param] (qu clause param)))
     :upsert-en (fnk [conn] (partial upsert-en conn)))))
 
 (defonce api (-> (config) :db dt))
