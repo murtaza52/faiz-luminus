@@ -8,7 +8,6 @@
 ;; **
 
 ;; @@
-(require '[faiz.data.api :refer [upsert-en find-person-by-its]])
 (require '[faiz.gorilla-api :refer :all])
 ;; @@
 ;; =>
@@ -34,15 +33,15 @@
 ;; **
 
 ;; @@
-(mumineen-not-receiving-thaali)
+(persons-not-receiving-thaali)
 
 ;; @@
 ;; ->
 ;;; 
-;;; |     Mobile |      Its |   Last Name | Middle Name | First Name |
-;;; |------------+----------+-------------+-------------+------------|
-;;; | 9923589052 | 20359401 | Rampurawala |   M Murtaza |      Batul |
-;;; | 9923589052 | 20359402 | Rampurawala |   M Murtaza |      Batul |
+;;; | Receives Thaali ? |     Mobile | In Poona ? |      Its |                 Address |   Last Name | Middle Name | First Name |       Email |
+;;; |-------------------+------------+------------+----------+-------------------------+-------------+-------------+------------+-------------|
+;;; |             false | 9923589052 |       true | 20359401 | {:db/id 17592186045442} | Rampurawala |   M Murtaza |      Batul | abc@abc.com |
+;;; |             false | 9923589052 |       true | 20359402 | {:db/id 17592186045442} | Rampurawala |   M Murtaza |      Batul | abc@abc.com |
 ;;; 
 ;; <-
 ;; =>
@@ -57,7 +56,7 @@
 ;; <=
 
 ;; **
-;;; ##### Search for a person using ITS
+;;; ##### Search for a mumin using ITS
 ;; **
 
 ;; @@
@@ -65,23 +64,47 @@
 ;; @@
 ;; ->
 ;;; 
-;;; |                Entity Type |       Email |     Mobile |      Its | Last Name | Middle Name | First Name |
-;;; |----------------------------+-------------+------------+----------+-----------+-------------+------------|
-;;; | :common.entity-type/person | abc@abc.com | 9923109056 | 20341111 |   Saoroda |       Shoeb |    Mustafa |
+;;; |       Email |     Mobile |      Its | Last Name | Middle Name | First Name |
+;;; |-------------+------------+----------+-----------+-------------+------------|
+;;; | abc@abc.com | 9923109056 | 20341111 |   Saoroda |       Shoeb |    Mustafa |
 ;;; 
 ;; <-
 ;; =>
 ;;; {"type":"html","content":"<span class='clj-nil'>nil</span>","value":"nil"}
 ;; <=
+
+;; **
+;;; ##### Search for a mumin using mobile.
+;;; 
+;; **
 
 ;; @@
 (find-me :person/mobile 9923109056)
 ;; @@
 ;; ->
 ;;; 
-;;; |                Entity Type |       Email |     Mobile |      Its | Last Name | Middle Name | First Name |
-;;; |----------------------------+-------------+------------+----------+-----------+-------------+------------|
-;;; | :common.entity-type/person | abc@abc.com | 9923109056 | 20341111 |   Saoroda |       Shoeb |    Mustafa |
+;;; |       Email |     Mobile |      Its | Last Name | Middle Name | First Name |
+;;; |-------------+------------+----------+-----------+-------------+------------|
+;;; | abc@abc.com | 9923109056 | 20341111 |   Saoroda |       Shoeb |    Mustafa |
+;;; 
+;; <-
+;; =>
+;;; {"type":"html","content":"<span class='clj-nil'>nil</span>","value":"nil"}
+;; <=
+
+;; **
+;;; ##### Search using the :db/id 
+;;; ##### (This can be used to search for entities such as the address, or a recently added entity)
+;; **
+
+;; @@
+(find-me :db/id 17592186045476)
+;; @@
+;; ->
+;;; 
+;;; |       Email |     Mobile |      Its | Last Name | Middle Name | First Name |
+;;; |-------------+------------+----------+-----------+-------------+------------|
+;;; | abc@abc.com | 9923109056 | 20341111 |   Saoroda |       Shoeb |    Mustafa |
 ;;; 
 ;; <-
 ;; =>
@@ -89,8 +112,18 @@
 ;; <=
 
 ;; @@
-(find-me :db/id 17592186045476)
+(find-me :db/id 17592186045442)
 ;; @@
+;; ->
+;;; 
+;;; | Street |  Landmark | Flat Num | Floor | Building |    Society |           Area |
+;;; |--------+-----------+----------+-------+----------+------------+----------------|
+;;; |   NIBM | ABC Farms |      206 |     4 |       A5 | GV Gardens | Salunke Vihaar |
+;;; 
+;; <-
+;; =>
+;;; {"type":"html","content":"<span class='clj-nil'>nil</span>","value":"nil"}
+;; <=
 
 ;; @@
 
