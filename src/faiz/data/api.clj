@@ -12,39 +12,23 @@
     ((dt/api :find-en) (merge search-clause (vector '?e attribute '?v))
                        param)))
 
-(defn get-entities
-  [attribute]
-  (fn [param]
-    ((dt/api :find-en) (merge search-clause (vector '?e attribute '?v))
-                       param)))
+(defn find-en2
+  [attr v]
+  ((dt/api :qu) '[:find ?e
+                :in $ ?v
+                :where
+                [?e attr ?v]]
+   v))
 
-(defn realize-entities
-  [k]
-  (fn [s]
-    (->>
-     s
-     (map first)
-     (map #((dt/api :entity) [k %]))
-     (map d/touch))))
+;; (find-en2 :person/its 20341280)
 
-(def realize-person (realize-entities :person/its))
-
-(defn retrieve-by-id [id]
-  (->>
-   id
-   ((dt/api :entity))
-   d/touch))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Search API ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(def find-person-by-its (find-en :person/its))
-
-(def find-person-by-mobile (find-en :person/mobile))
-
-(def find-thaali-by-num (find-en :thaali/num))
-
 ;; retrieve address of a person, return all thaalis, pending hubs.
 (def given-person-get-thaalis)
+
+(def get-en (dt/api :get-en))
 
 ;; retrieve all active thaalis for the address of a particular person
 (defn thaalis-for-its-address
@@ -71,20 +55,18 @@
 ;; find all persons in Pune and receiving thaali barakat
 (defn persons-receiving-thaali
   []
-  ((dt/api :qu) '[:find ?its
+  ((dt/api :qu) '[:find ?person
                 :where
-                [?person :person/its ?its]
+                [?person :person/its]
                 [?person :person/in-poona? true]
                 [?person :person/receives-thaali? true]]))
-
-(persons-receiving-thaali)
 
 ;; find all persons in Pune and not receiving thaali barakat
 (defn persons-not-receiving-thaali
   []
-  ((dt/api :qu) '[:find ?its
+  ((dt/api :qu) '[:find ?person
                 :where
-                [?person :person/its ?its]
+                [?person :person/its]
                 [?person :person/in-poona? true]
                 [?person :person/receives-thaali? false]]))
 
@@ -139,8 +121,6 @@
 ;; retrieve the duration during which a thaali was active
 
 ;; retrieve the start stop and duration activity of a thaali during a time span.
-
-  (find-person-by-its 20341280)
 
 ;; create incharges for each thaali.
 
