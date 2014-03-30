@@ -10,9 +10,6 @@
 ;; @@
 (require '[faiz.gorilla-api :refer :all])
 ;; @@
-;; =>
-;;; {"type":"html","content":"<span class='clj-nil'>nil</span>","value":"nil"}
-;; <=
 
 ;; @@
 ;; Define a new address
@@ -33,7 +30,7 @@
 ;; @@
 ;; Save the address
 
-(create-me address)
+(save address)
 ;; @@
 ;; =>
 ;;; {"type":"html","content":"<span class='clj-unkown'>{:db/id 17592186045489}</span>","value":"{:db/id 17592186045489}"}
@@ -60,9 +57,9 @@
 ;; <=
 
 ;; @@
-;; Save the person
+;; Save the person. You can create a new person or update an existing one using the save function.
 
-(create-me person)
+(save person)
 ;; @@
 ;; =>
 ;;; {"type":"html","content":"<span class='clj-unkown'>{:db/id 17592186045493}</span>","value":"{:db/id 17592186045493}"}
@@ -72,6 +69,12 @@
 ;; Define a new thaali. Include the :db/id of the address defined above.
 
 ;; Set the :delivery/mode to :delivery.mode/pickup for pickup or :delivery.mode/transport for transport.
+
+;; Set the thaali to inactive to stop it.
+
+;; Change the size to, change the size.
+
+;; Change the delivery mode to start / stop transport.
 
 (def thaali 
   {:thaali/size :thaali.size/full
@@ -87,7 +90,7 @@
 ;; @@
 ;; Save the thaali
 
-(create-me thaali)
+(save thaali)
 ;; @@
 
 ;; @@

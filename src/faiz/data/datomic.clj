@@ -92,15 +92,4 @@
     :get-en (fnk [id->entity] (comp realize-en id->entity))
     :upsert-en (fnk [conn] (partial upsert-en conn)))))
 
-(defonce api @db-conf)
-
-(def p {:common/entity-type :common.entity-type/person
-   :person/first-name "Mustafa"
-   :person/middle-name "Shoeb"
-   :person/last-name "Saoroda"
-   :person/its 20341112
-   :person/mobile 9923109056
-   :person/email "abc@abc.com"
-   :hub-commitment/term :hub-commitment.term/monthly})
-
-((api :upsert-en) p)
+(defonce api (dt @db-conf))
