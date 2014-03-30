@@ -95,6 +95,16 @@
  :db/doc "Email Address"
  :db.install/_attribute :db.part/db}
 
+ {:db/id #db/id[:db.part/db]
+ :db/ident :hub-commitment/term
+ :db/valueType :db.type/ref
+ :db/cardinality :db.cardinality/one
+ :db/doc "Email Address"
+ :db.install/_attribute :db.part/db}
+
+ [:db/add #db/id[:db.part/user] :db/ident :hub-commitment.term/monthly]
+ [:db/add #db/id[:db.part/user] :db/ident :hub-commitment.term/yearly]
+
 ;; groupings of addressess for which there are incharges
 ;; Groups
 
@@ -285,6 +295,11 @@
  :db/doc "Delivery service provided by (transporter)."
  :db.install/_attribute :db.part/db}
 
+;; transporters
+[:db/add #db/id[:db.part/user] :db/ident :delivery.transporter/hunaid-bhai]
+[:db/add #db/id[:db.part/user] :db/ident :delivery.transporter/saifee-bhai]
+[:db/add #db/id[:db.part/user] :db/ident :delivery.transporter/mohammed-bhai]
+
 {:db/id #db/id[:db.part/db]
  :db/ident :delivery/route
  :db/valueType :db.type/ref
@@ -298,11 +313,6 @@
 [:db/add #db/id[:db.part/user] :db/ident :delivery.route/mithanagar]
 [:db/add #db/id[:db.part/user] :db/ident :delivery.route/camp]
 
-;; transporters
-[:db/add #db/id[:db.part/user] :db/ident :delivery.transporter/hunaid-bhai]
-[:db/add #db/id[:db.part/user] :db/ident :delivery.transporter/saifee-bhai]
-[:db/add #db/id[:db.part/user] :db/ident :delivery.transporter/mohammed-bhai]
-
 {:db/id #db/id[:db.part/db]
  :db/ident :thaali/remarks
  :db/valueType :db.type/string
@@ -310,32 +320,41 @@
  :db/doc "Any relavent remarks"
  :db.install/_attribute :db.part/db}
 
-{:db/id #db/id[:db.part/db]
- :db/ident :thaali/skip-dates
+ {:db/id #db/id[:db.part/db]
+ :db/ident :thaali/active?
  :db/valueType :db.type/boolean
- :db/cardinality :db.cardinality/many
+ :db/cardinality :db.cardinality/one
+ :db/doc "If the thaali is active is not."
+ :db.install/_attribute :db.part/db}
+
+;; Thaali Events
+
+{:db/id #db/id[:db.part/db]
+ :db/ident :thaali-event/skipped-on
+ :db/valueType :db.type/boolean
+ :db/cardinality :db.cardinality/one
  :db/doc "Dates on which it was informed that thaali is not to be prepared."
  :db.install/_attribute :db.part/db}
 
 {:db/id #db/id[:db.part/db]
- :db/ident :thaali/not-picked-dates
+ :db/ident :thaali-event/not-picked-on
  :db/valueType :db.type/string
- :db/cardinality :db.cardinality/many
- :db/doc "Dates on which thaali was not picked up."
+ :db/cardinality :db.cardinality/one
+ :db/doc "Dates on which thaali was not picked up, without informing."
  :db.install/_attribute :db.part/db}
 
 {:db/id #db/id[:db.part/db]
- :db/ident :thaali/started-on
+ :db/ident :thaali-event/started-since
  :db/valueType :db.type/string
  :db/cardinality :db.cardinality/one
- :db/doc "Date thaali was started in the current month"
+ :db/doc "Date thaali was started on."
  :db.install/_attribute :db.part/db}
 
 {:db/id #db/id[:db.part/db]
- :db/ident :thaali/stopped-on
+ :db/ident :thaali-event/stopped-since
  :db/valueType :db.type/string
  :db/cardinality :db.cardinality/one
- :db/doc "Date thaali was stopped in the current month. This is a long term stop. If for a few days, then enter in skip-dates."
+ :db/doc "Date thaali was stopped. This is a long term stop. If for a few days, then enter in skip-dates."
  :db.install/_attribute :db.part/db}
 
 ;; Common Elements
@@ -359,7 +378,6 @@
 [:db/add #db/id[:db.part/user] :db/ident :common.roles/caterer]
 [:db/add #db/id[:db.part/user] :db/ident :common.roles/musaid]
 [:db/add #db/id[:db.part/user] :db/ident :common.roles/coordinator]
-
 
 {:db/id #db/id[:db.part/db]
  :db/ident :common/hijri-year

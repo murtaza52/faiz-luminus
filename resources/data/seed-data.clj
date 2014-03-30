@@ -10,40 +10,18 @@
  ;; thaalis at a particular time can be retrieved by querying against the DB at that point of time.
 
 
+;; address
 
-;;  {:db/id #db/id[:db.part/user -1000001]
-;;   :thaali/size :thaali.size/half
-;;   :thaali/num 21
-;;   :common/hijri-year 1434
-;;   :common/hijri-month "Shawaal"
-;;   :thaali/started-on "12-04-12"
-;;   :thaali/stopped-on "12-05-12"
-;;   :delivery/mode :delivery.mode/transport
-;;   :common/entity-type :common.entity-type/thaali}
+ {:db/id #db/id[:db.part/user -1000005]
+  :address/area "Salunke Vihaar"
+  :address/street "NIBM"
+  :address/landmark "ABC Farms"
+  :address/society "GV Gardens"
+  :address/building "A5"
+  :address/floor "4"
+  :address/flat-num "206"}
 
-;; ;;transporter
-;;   {:db/id #db/id[:db.part/user -1000004]
-;;   :common/entity-type :common.entity-type/person
-;;   :person/first-name "Juzer"
-;;   :common/roles :common.roles/transporter}
-
-;;    {:db/id #db/id[:db.part/user -1000005]
-;;   :common/entity-type :common.entity-type/person
-;;   :person/first-name "Murtaza"
-;;   :person/last-name "Gadiwala"
-;;   :common/roles :common.roles/transporter}
-
-;;    {:db/id #db/id[:db.part/user -1000006]
-;;   :common/entity-type :common.entity-type/person
-;;   :person/first-name "Qaizar"
-;;   :common/roles :common.roles/transporter}
-
-
- ;; create a hub object for every person every month, every person done hub niyat of how much he will contribute.
-
-
-;;;;person
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; person
 
  {:db/id #db/id[:db.part/user -1000009]
    :common/entity-type :common.entity-type/person
@@ -55,6 +33,7 @@
    :person/email "abc@abc.com"
    :person/in-poona? true
    :person/receives-thaali? true
+   :hub-commitment/term :hub-commitment.term/yearly
    :person/address #db/id[:db.part/user -1000005]}
 
   {:db/id #db/id[:db.part/user -1000010]
@@ -65,30 +44,58 @@
    :person/mobile 9923589052
    :person/email "abc@abc.com"
    :person/in-poona? true
-   :person/receives-thaali? false
+   :person/receives-thaali? true
+   :hub-commitment/term :hub-commitment.term/monthly
    :person/address #db/id[:db.part/user -1000005]}
 
  {:db/id #db/id[:db.part/user -1000011]
-   :person/first-name "Batul"
+   :person/first-name "Tasneem"
    :person/middle-name "M Murtaza"
-   :person/last-name "Rampurawala"
+   :person/last-name "Kandivali"
    :person/its 20359402
-   :person/mobile 9923589052
+   :person/mobile 9923589055
    :person/email "abc@abc.com"
    :person/in-poona? true
    :person/receives-thaali? false
    :person/address #db/id[:db.part/user -1000005]}
 
- {:db/id #db/id[:db.part/user -1000005]
-  :address/area "Salunke Vihaar"
-  :address/street "NIBM"
-  :address/landmark "ABC Farms"
-  :address/society "GV Gardens"
-  :address/building "A5"
-  :address/floor "4"
-  :address/flat-num "206"}
+ ;; Thaalis
+
+ {:db/id #db/id[:db.part/user -1000002]
+  :thaali/size :thaali.size/half
+  :thaali/num 21
+  :thaali/active? true
+  :delivery/mode :delivery.mode/pickup
+  :thaali/address #db/id[:db.part/user -1000005]}
+
+ {:db/id #db/id[:db.part/user -1000003]
+  :thaali/size :thaali.size/full
+  :thaali/num 22
+  :thaali/active? true
+  :delivery/mode :delivery.mode/transport
+  :delivery/transporter :delivery.transporter/hunaid-bhai
+  :thaali/address #db/id[:db.part/user -1000005]}
+
+ ;; Thaali Events
+
+ ;; nice to have - a continum of thaalis. Tha will help us find out the number of thaalis active each day etc.
+ ;; Even active? should allow us to do analysis of an instant in time using datomic.
+
+ ;; How do we find the number of days thaali is active ?
+
+;;  {:db/id #db/id[:db.part/user -1000061]
+;;   :thaali-event/started-since #inst "2014-03-13T00:00:00.000-00:00"}
+
+;;  {:db/id #db/id[:db.part/user -1000061]
+;;   :thaali-event/stopped-since #inst "2014-02-13T00:00:00.000-00:00"}
+
+ ;; Thaali start and stop should also be redundant as the analysis on active? should tell us the history, and also the start date.
+
+ {:db/id #db/id[:db.part/user -1000061]
+  :thaali-event/not-picked-on #inst "2014-02-13T00:00:00.000-00:00"}
 
  ;; Define a group
+
  {:db/id #db/id[:db.part/user -1000020]
   :group/name "Saifee"
   :group/addresses [#db/id[:db.part/user -1000005]]
@@ -137,26 +144,6 @@
   :hub-commitment/financial-year :1435-1436
   :hub-commitment/person #db/id[:db.part/user -1000011]
   :hub-commitment/amount 21000}
-
-;;  {:db/id #db/id[:db.part/user -1000002]
-;;   :thaali/size :thaali.size/half
-;;   :thaali/num 21
-;;   :common/hijri-year 1434
-;;   :common/hijri-month "Zilqaad"
-;;   :delivery/mode :delivery.mode/pickup
-;;   :thaali/started-on "01-04-13"
-;;   :thaali/stopped-on "01-05-13"
-;;   :thaali/address #db/id[:db.part/user -1000005]}
-
-;;  {:db/id #db/id[:db.part/user -1000003]
-;;   :thaali/size :thaali.size/full
-;;   :thaali/num 22
-;;   :common/hijri-year 1434
-;;   :common/hijri-month "Zilqaad"
-;;   :delivery/mode :delivery.mode/transport
-;;   :thaali/started-on "01-04-13"
-;;   :thaali/stopped-on "10-04-13"
-;;   :thaali/address #db/id[:db.part/user -1000005]}
 
    ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;   {:db/id #db/id[:db.part/user -1000031]

@@ -95,6 +95,8 @@
                                       [?y :hub-commitment/amount ?amount]]
                                     year its))))
 
+;; find a stream of changes that has happened during a given time span. This can be used for workflow purposes.
+
 
 ;; amount over due
 

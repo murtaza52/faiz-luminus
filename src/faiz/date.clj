@@ -6,7 +6,7 @@
   [& p]
   (-> (apply t/date-time p) c/to-date))
 
-;; (date-instance 2014 5 1)
+(date-instance 2014 3 13)
 
 
 ;;(def current-instance

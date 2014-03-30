@@ -19,9 +19,23 @@
   [_ v]
   (api/find-all v))
 
+(defmethod search :all
+  [_ v]
+  (api/find-all v))
+
 (defmethod search :default
   [k v]
   (api/find-en k v))
+
+;; search where attr is given
+;; this is usually a list
+
+;; search where value is given
+;; why cant i just search with the value
+
+;; searh where :db/id is given
+;; search where
+
 
 (defn format-entities [coll]
   (->>

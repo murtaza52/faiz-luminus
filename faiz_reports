@@ -1,8 +1,8 @@
 ;; gorilla-repl.fileformat = 1
 
 ;; **
-;;; # Faiz-ul-Mawaid-il-Burhaniyah
-;;; ## Data Entry Sheet
+;;; ## Faiz-ul-Mawaid-il-Burhaniyah (Poona Students)
+;;; ## New Registeration
 ;;; 
 ;;; Welcome to Faiz-ul-Mawaid-il-Burhaniyah. Press :-) Shift + enter evaluates code. Poke the question mark (top right) to learn more ...
 ;; **
@@ -42,6 +42,8 @@
 ;; @@
 ;; Define a new person, include the :db/id of the address saved above. 
 
+;; The hub-commitment/term specifies if the hub term is monthly or yearly.
+
 (def person 
   {:common/entity-type :common.entity-type/person
    :person/first-name "Mustafa"
@@ -50,6 +52,7 @@
    :person/its 20341112
    :person/mobile 9923109056
    :person/email "abc@abc.com"
+   :hub-commitment/term :hub-commitment.term/monthly
    :person/address {:db/id 17592186045489}})
 ;; @@
 ;; =>
@@ -64,6 +67,28 @@
 ;; =>
 ;;; {"type":"html","content":"<span class='clj-unkown'>{:db/id 17592186045493}</span>","value":"{:db/id 17592186045493}"}
 ;; <=
+
+;; @@
+;; Define a new thaali. Include the :db/id of the address defined above.
+
+;; Set the :delivery/mode to :delivery.mode/pickup for pickup or :delivery.mode/transport for transport.
+
+(def thaali 
+  {:thaali/size :thaali.size/full
+  :thaali/num 22
+  :thaali/active? true
+  :delivery/mode :delivery.mode/transport
+  :thaali/address {:db/id 17592186045489}})
+;; @@
+;; =>
+;;; {"type":"html","content":"<span class='clj-var'>#&#x27;user/thaali</span>","value":"#'user/thaali"}
+;; <=
+
+;; @@
+;; Save the thaali
+
+(create-me thaali)
+;; @@
 
 ;; @@
 ;; Search for the person, saved above. A person can be searched using any of its attributes - :person/its , :person/mobile , :person/first-name etc 
@@ -94,6 +119,15 @@
 ;;; |   NIBM | ABC Farms |      206 |     4 |       A5 | GV Gardens | Salunke Vihaar |
 ;;; 
 ;; <-
+;; =>
+;;; {"type":"html","content":"<span class='clj-nil'>nil</span>","value":"nil"}
+;; <=
+
+;; @@
+;; Find a thaali using the thaali number
+
+(find-me :thaali/num 21)
+;; @@
 ;; =>
 ;;; {"type":"html","content":"<span class='clj-nil'>nil</span>","value":"nil"}
 ;; <=
@@ -137,6 +171,15 @@
 ;;; |   NIBM | ABC Farms |      206 |     4 |       A5 | GV Gardens | Salunke Vihaar |
 ;;; 
 ;; <-
+;; =>
+;;; {"type":"html","content":"<span class='clj-nil'>nil</span>","value":"nil"}
+;; <=
+
+;; @@
+;; List all thaalis
+
+(find-me :all :thaali/num)
+;; @@
 ;; =>
 ;;; {"type":"html","content":"<span class='clj-nil'>nil</span>","value":"nil"}
 ;; <=
