@@ -56,6 +56,19 @@
 (defn create-me [m]
   (api/upsert-en m))
 
+(def person
+  {:common/entity-type :common.entity-type/person
+   :person/first-name "Mustafa"
+   :person/middle-name "Shoeb"
+   :person/last-name "Saoroda"
+   :person/its 20341112
+   :person/mobile 9923109056
+   :person/email "abc@abc.com"
+   :hub-commitment/term :hub-commitment.term/monthly
+   :person/address {:db/id 17592186045489}})
+
+(create-me person)
+
 (def persons-not-receiving-thaali (comp
                                      print-en
                                      format-entities

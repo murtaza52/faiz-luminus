@@ -99,7 +99,7 @@
  :db/ident :hub-commitment/term
  :db/valueType :db.type/ref
  :db/cardinality :db.cardinality/one
- :db/doc "Email Address"
+ :db/doc "The term of the hub commitment."
  :db.install/_attribute :db.part/db}
 
  [:db/add #db/id[:db.part/user] :db/ident :hub-commitment.term/monthly]
@@ -331,28 +331,28 @@
 
 {:db/id #db/id[:db.part/db]
  :db/ident :thaali-event/skipped-on
- :db/valueType :db.type/boolean
+ :db/valueType :db.type/instant
  :db/cardinality :db.cardinality/one
- :db/doc "Dates on which it was informed that thaali is not to be prepared."
+ :db/doc "Date on which it was informed that thaali is not to be prepared."
  :db.install/_attribute :db.part/db}
 
 {:db/id #db/id[:db.part/db]
  :db/ident :thaali-event/not-picked-on
- :db/valueType :db.type/string
+ :db/valueType :db.type/instant
  :db/cardinality :db.cardinality/one
- :db/doc "Dates on which thaali was not picked up, without informing."
+ :db/doc "Date on which thaali was not picked up, without informing."
  :db.install/_attribute :db.part/db}
 
 {:db/id #db/id[:db.part/db]
  :db/ident :thaali-event/started-since
- :db/valueType :db.type/string
+ :db/valueType :db.type/instant
  :db/cardinality :db.cardinality/one
  :db/doc "Date thaali was started on."
  :db.install/_attribute :db.part/db}
 
 {:db/id #db/id[:db.part/db]
  :db/ident :thaali-event/stopped-since
- :db/valueType :db.type/string
+ :db/valueType :db.type/instant
  :db/cardinality :db.cardinality/one
  :db/doc "Date thaali was stopped. This is a long term stop. If for a few days, then enter in skip-dates."
  :db.install/_attribute :db.part/db}

@@ -1,25 +1,46 @@
 (ns faiz.data.datomic
   (:require [datomic.api :refer [db q] :as d]
             [faiz.config :refer [config]]
-            [plumbing.core :refer [fnk]]
+            [plumbing.core :refer [fnk defnk]]
             [plumbing.graph :as graph]
             [schema.core :as s]
             [faiz.utils :as utils]))
 
-(defn reset-db!
-  [uri]
-  (d/delete-database uri)
-  (d/create-database uri))
+(def db-conf (atom (-> (config) :db)))
 
-(defn trans
-  "Utility function for transacting data"
-  [tx-data conn]
-  @(d/transact conn tx-data))
+(def dev? true)
+
+(defnk add-conn
+  [uri]
+  (swap! db-conf merge {:conn (d/connect uri)}))
 
 (defn add-data
   "Populates data in the db"
   [conn file]
-  (trans (utils/read-clj file) conn))
+  (d/transact conn (utils/read-clj file)))
+
+(defnk reset-db!
+  [uri]
+  (d/delete-database uri)
+  (d/create-database uri))
+
+(defnk alter-schema!
+  [conn schema]
+  (doall
+   (map #(add-data conn %) schema)))
+
+(defnk seed-data!
+  [conn seed-data]
+  (doall
+   (map #(add-data conn %) seed-data)))
+
+(if dev?
+    (do
+      (reset-db! @db-conf)
+      (add-conn @db-conf)
+      (alter-schema! @db-conf)
+      (seed-data! @db-conf))
+    (add-conn @db-conf))
 
 ;;;;;;;;;;;;;;;;;; Query fns ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -57,7 +78,7 @@
 (defn upsert-en
   [conn m]
   (let [m-with-id (add-if m :db/id (get-temp-id))
-        {:keys [db-after tempids]} (trans [m-with-id] conn)
+        {:keys [db-after tempids]} @(d/transact conn [m-with-id])
         id (d/resolve-tempid db-after tempids (m-with-id :db/id))]
     (d/entity db-after id)))
 
@@ -66,14 +87,20 @@
 (def dt
   (graph/lazy-compile
    (graph/graph
-    :reset (fnk [uri] (reset-db! uri))
-    :conn (fnk [uri] (d/connect uri))
-    :add-data (fnk [conn] (partial add-data conn))
-    :schema-res (fnk [schema add-data] (doall (map add-data schema)))
-    :seed-data-res (fnk [seed-data add-data] (doall (map add-data seed-data)))
     :qu (fnk [conn] (partial qu conn))
     :id->entity (fnk [conn] (partial id->entity-2 conn))
     :get-en (fnk [id->entity] (comp realize-en id->entity))
     :upsert-en (fnk [conn] (partial upsert-en conn)))))
 
-(defonce api (-> (config) :db dt))
+(defonce api @db-conf)
+
+(def p {:common/entity-type :common.entity-type/person
+   :person/first-name "Mustafa"
+   :person/middle-name "Shoeb"
+   :person/last-name "Saoroda"
+   :person/its 20341112
+   :person/mobile 9923109056
+   :person/email "abc@abc.com"
+   :hub-commitment/term :hub-commitment.term/monthly})
+
+((api :upsert-en) p)
