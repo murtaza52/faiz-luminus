@@ -1,6 +1,6 @@
 (ns faiz.data.api
   (:require [faiz.data.datomic :as dt]
-            [datomic.api :as d]))
+            [datomic.api :refer [db q] :as d]))
 
 (def search-clause '[:find ?e
                      :in $ ?v
@@ -23,18 +23,27 @@
 
 (def get-en (dt/api :get-en))
 
+(defn pending-hubs
+  [its]
+  ((dt/api :qu) '[:find ?thaali-num ?size
+                :in $ ?its
+                :where
+                [?p :person/its ?its]
+                [?p :person/address ?add]
+                [?all-p :person/address ?add]]
+   its))
+
+
+;; (q '[:find ?e
+;;      [?per :person/its]
+;;      [?per :person/address ?add]
+;;      [?tha :thaali/num]])
 
 ;; find all people whose hub commitment is not yearly.
 ;; find their address.
 ;; find active thaalis for that address.
 ;; create a new hub commitment for that month.
 
-
-;;
-
-((dt/api :qu) '[:find ?tx
-                :where
-                [?e :person/its 20341280 ?tx]])
 
 ;; retrieve all active thaalis for the address of a particular person
 (defn thaalis-for-its-address

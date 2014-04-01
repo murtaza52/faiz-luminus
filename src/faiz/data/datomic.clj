@@ -6,6 +6,8 @@
             [schema.core :as s]
             [faiz.utils :as utils]))
 
+(def db-conf (atom (-> (config) :db)))
+
 (defnk add-conn
   [uri]
   (swap! db-conf merge {:conn (d/connect uri)}))
@@ -81,8 +83,6 @@
     :upsert-en (fnk [conn] (partial upsert-en conn)))))
 
 ;;; This should be a separate ns ;;;;
-
-(def db-conf (atom (-> (config) :db)))
 
 (def dev? true)
 
