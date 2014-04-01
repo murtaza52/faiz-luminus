@@ -23,6 +23,19 @@
 
 (def get-en (dt/api :get-en))
 
+
+;; find all people whose hub commitment is not yearly.
+;; find their address.
+;; find active thaalis for that address.
+;; create a new hub commitment for that month.
+
+
+;;
+
+((dt/api :qu) '[:find ?tx
+                :where
+                [?e :person/its 20341280 ?tx]])
+
 ;; retrieve all active thaalis for the address of a particular person
 (defn thaalis-for-its-address
   [its]

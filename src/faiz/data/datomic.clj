@@ -6,10 +6,6 @@
             [schema.core :as s]
             [faiz.utils :as utils]))
 
-(def db-conf (atom (-> (config) :db)))
-
-(def dev? true)
-
 (defnk add-conn
   [uri]
   (swap! db-conf merge {:conn (d/connect uri)}))
@@ -33,14 +29,6 @@
   [conn seed-data]
   (doall
    (map #(add-data conn %) seed-data)))
-
-(if dev?
-    (do
-      (reset-db! @db-conf)
-      (add-conn @db-conf)
-      (alter-schema! @db-conf)
-      (seed-data! @db-conf))
-    (add-conn @db-conf))
 
 ;;;;;;;;;;;;;;;;;; Query fns ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -91,5 +79,17 @@
     :id->entity (fnk [conn] (partial id->entity-2 conn))
     :get-en (fnk [id->entity] (comp realize-en id->entity))
     :upsert-en (fnk [conn] (partial upsert-en conn)))))
+
+;;; This should be a separate ns ;;;;
+
+(def db-conf (atom (-> (config) :db)))
+
+(def dev? true)
+
+(def dev-fns [reset-db! add-conn alter-schema! seed-data!])
+
+(if dev?
+    (doall (map #(% @db-conf) dev-fns))
+    (add-conn @db-conf))
 
 (defonce api (dt @db-conf))

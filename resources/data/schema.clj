@@ -428,8 +428,6 @@
 ;;  :db/doc "Hijri Year"
 ;;  :db.install/_attribute :db.part/db}
 
-;[:db/add #db/id[:db.part/user] :db/ident :financial-year.year/1435-1436]
-
 ;; {:db/id #db/id[:db.part/db]
 ;;  :db/ident :financial-year/start-date
 ;;  :db/valueType :db.type/instant
@@ -455,10 +453,12 @@
 
 {:db/id #db/id[:db.part/db]
  :db/ident :hub-commitment/financial-year
- :db/valueType :db.type/keyword
+ :db/valueType :db.type/ref
  :db/cardinality :db.cardinality/one
- :db/doc "Yearly hub commitment"
+ :db/doc "Financial year for the hub commitment."
  :db.install/_attribute :db.part/db}
+
+[:db/add #db/id[:db.part/user] :db/ident :1435-1436]
 
 {:db/id #db/id[:db.part/db]
  :db/ident :hub-commitment/person
@@ -466,6 +466,23 @@
  :db/cardinality :db.cardinality/one
  :db/doc "The person commiting the hub amount."
  :db.install/_attribute :db.part/db}
+
+ {:db/id #db/id[:db.part/db]
+ :db/ident :hub-commitment/month
+ :db/valueType :db.type/ref
+ :db/cardinality :db.cardinality/one
+ :db/doc "The month of the hub commitment (monthly term)."
+ :db.install/_attribute :db.part/db}
+
+{:db/id #db/id[:db.part/db]
+ :db/ident :hub-commitment/thaali-num
+ :db/valueType :db.type/long
+ :db/cardinality :db.cardinality/one
+ :db/doc "The thaali for which is the hub commitment (monthly term)."
+ :db.install/_attribute :db.part/db}
+
+ [:db/add #db/id[:db.part/user] :db/ident :1435-shawaal]
+ [:db/add #db/id[:db.part/user] :db/ident :1435-rajab]
 
 ;;Hub Schedule
 
@@ -491,12 +508,6 @@
  :db.install/_attribute :db.part/db}
 
 ;; Hub Received
-{:db/id #db/id[:db.part/db]
- :db/ident :hub-received/by
- :db/valueType :db.type/ref
- :db/cardinality :db.cardinality/one
- :db/doc "The person receiving the hub."
- :db.install/_attribute :db.part/db}
 
 {:db/id #db/id[:db.part/db]
  :db/ident :hub-received/amount
@@ -506,16 +517,17 @@
  :db.install/_attribute :db.part/db}
 
 {:db/id #db/id[:db.part/db]
- :db/ident :hub-received/on
- :db/valueType :db.type/instant
+ :db/ident :hub-received/thaali-num
+ :db/valueType :db.type/long
  :db/cardinality :db.cardinality/one
- :db/doc "Date on which hub amount was received."
+ :db/doc "Thaali num for which hub amount is received (monthly term)."
  :db.install/_attribute :db.part/db}
 
 {:db/id #db/id[:db.part/db]
- :db/ident :hub-received/for
- :db/valueType :db.type/ref
+ :db/ident :hub-received/person-its
+ :db/valueType :db.type/long
  :db/cardinality :db.cardinality/one
- :db/doc "Commitment for which hub amount is received."
+ :db/doc "Person for which hub amount is received (yearly term)."
  :db.install/_attribute :db.part/db}
-]
+
+ ]

@@ -53,7 +53,9 @@
                 api/get-en
                 search))
 
-(defn save-me [m]
+(find-me :all :person/its)
+
+(defn save [m]
   (api/upsert-en m))
 
 (def persons-not-receiving-thaali (comp

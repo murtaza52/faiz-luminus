@@ -21,6 +21,15 @@
   :address/floor "4"
   :address/flat-num "206"}
 
+  {:db/id #db/id[:db.part/user -1000511]
+  :address/area "Salunke Vihaar"
+  :address/street "NIBM"
+  :address/landmark "ABC Farms"
+  :address/society "GV Gardens"
+  :address/building "A5"
+  :address/floor "4"
+  :address/flat-num "206"}
+
 ;; person
 
  {:db/id #db/id[:db.part/user -1000009]
@@ -45,7 +54,6 @@
    :person/email "abc@abc.com"
    :person/in-poona? true
    :person/receives-thaali? true
-   :hub-commitment/term :hub-commitment.term/monthly
    :person/address #db/id[:db.part/user -1000005]}
 
  {:db/id #db/id[:db.part/user -1000011]
@@ -56,8 +64,9 @@
    :person/mobile 9923589055
    :person/email "abc@abc.com"
    :person/in-poona? true
-   :person/receives-thaali? false
-   :person/address #db/id[:db.part/user -1000005]}
+   :person/receives-thaali? true
+   :hub-commitment/term :hub-commitment.term/monthly
+   :person/address #db/id[:db.part/user -1000511]}
 
  ;; Thaalis
 
@@ -74,7 +83,7 @@
   :thaali/active? true
   :delivery/mode :delivery.mode/transport
   :delivery/transporter :delivery.transporter/hunaid-bhai
-  :thaali/address #db/id[:db.part/user -1000005]}
+  :thaali/address #db/id[:db.part/user -1000511]}
 
  ;; Thaali Events
 
@@ -145,6 +154,28 @@
   :hub-commitment/person #db/id[:db.part/user -1000011]
   :hub-commitment/amount 21000}
 
+;; Hub commitment for a monthly term
+ {:db/id #db/id[:db.part/user -1000071]
+  :hub-commitment/month :1435-shawaal
+  :hub-commitment/thaali-num 22
+  :hub-commitment/amount 3300}
+
+ ;;;;;;;;; Hub Received ;;;;;;;;;;;;;;;
+
+
+ ;; Monthly term
+ {:db/id #db/id[:db.part/user -1000035]
+  :hub-received/amount 1650
+  :hub-received/thaali-num 22
+  :hub-commitment/month :1435-shawaal}
+
+
+ ;; Yearly term
+  {:db/id #db/id[:db.part/user -1000036]
+  :hub-received/amount 7000
+  :hub-received/person-its 20341280
+  :hub-commitment/financial-year :1435-1436}
+
    ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;   {:db/id #db/id[:db.part/user -1000031]
 ;;   :hub/person #db/id[:db.part/user -1000009]
@@ -174,12 +205,6 @@
 ;;   :common/hijri-month "Zilqaad"
 ;;   :hub/due-date "21/1/2013"}
 
-;;  {:db/id #db/id[:db.part/user -1000035]
-;;   :hub/amount-received 1650
-;;   :hub/received-on "12/1/2013"
-;;   :hub/received-by "Sadiq Bhai"
-;;   :hub/person #db/id[:db.part/user -1000009]
-;;   :hub/for #db/id[:db.part/user -1000031]}
 
 ;;   {:db/id #db/id[:db.part/user -1000036]
 ;;   :hub/amount-received 1650
@@ -200,5 +225,5 @@
 
 
 
-])
+]
 
