@@ -15,4 +15,5 @@
 (defroutes home-routes
   (GET "/" [] (home-page))
   (GET "/about" [] (about-page))
-  (GET "/persons/all" [] (edn (c/persons-taking-thaalis))))
+;;  (GET "/persons/all" [] (edn (c/persons-taking-thaalis)))
+  )

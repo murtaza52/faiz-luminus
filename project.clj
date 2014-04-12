@@ -22,12 +22,8 @@
                  [local/camel-snake-kebab "1.1"]]
   :plugins [[lein-ring "0.8.7"]
             [lein-cljsbuild "1.0.0"]
-            [lein-gorilla "0.2.0"]]
-  ;;:hooks [leiningen.cljsbuild]
-  :main faiz.init
-  :ring {:handler faiz.handler/war-handler
-         :init    faiz.handler/init
-         :destroy faiz.handler/destroy}
+            [lein-gorilla "0.2.0"]
+            [jonase/eastwood "0.1.1"]]
   :resource-paths ["resources"]
   :repositories {"project" "file:repo"}
   :profiles {:production {:ring {:open-browser? false
@@ -36,11 +32,7 @@
              :dev {:dependencies [[ring-mock "0.1.5"]
                                   [http-kit "2.1.18"]
                                   [clj-http "0.9.1"]
-                                  [midje "1.6.3"]]}}
-  :cljsbuild
-  {:builds [{:source-paths ["src-cljs"]
-             :compiler {:output-to "resources/public/js/site.js"
-                        :optimizations :whitespace
-                        :pretty-print true
-                        :source-map "site.js.map"}}]}
+                                  [midje "1.6.3"]]
+                   :source-paths ["dev"]}}
+  :repl-options {:timeout 120000}
   :min-lein-version "2.0.0")

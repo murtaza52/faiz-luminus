@@ -9,23 +9,23 @@
 (defn find-all
   [attr]
   (let [clause (merge '[:find ?e :where] (vector '?e attr))]
-    ((dt/api :qu) clause)))
+    ((@dt/api :qu) clause)))
 
 (defn find-en
   [attr v]
   (let [clause (merge '[:find ?e :in $ ?v :where] (vector '?e attr '?v))]
-    ((dt/api :qu) clause v)))
+    ((@dt/api :qu) clause v)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Search API ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; retrieve address of a person, return all thaalis, pending hubs.
 (def given-person-get-thaalis)
 
-(def get-en (dt/api :get-en))
+(def get-en (@dt/api :get-en))
 
 (defn pending-hubs
   [its]
-  ((dt/api :qu) '[:find ?thaali-num ?size
+  ((@dt/api :qu) '[:find ?thaali-num ?size
                 :in $ ?its
                 :where
                 [?p :person/its ?its]
@@ -33,11 +33,38 @@
                 [?all-p :person/address ?add]]
    its))
 
+;; for a person
+;;; having a hub commitment
+;; take his hub commitment amount
+;; total of hub rcvd is less than amt
 
-;; (q '[:find ?e
-;;      [?per :person/its]
-;;      [?per :person/address ?add]
-;;      [?tha :thaali/num]])
+
+;;
+
+;; (q '[:find ?h ?a
+;;      :where
+;;      [?e :person/its]
+;;      [?h :hub-commitment/person ?e]
+;;      [?h :hub-commitment/amount ?a]]
+;;    (db (dt/conn)))
+
+;; (q '[:find (sum ?amt-rcvd) ?amt ?h
+;;      :where
+;;      [?h :hub-commitment/amount ?amt]
+;;      [?hr :hub-received/commitment ?h]
+;;      [?hr :hub-received/amount ?amt-rcvd]]
+;;    (db (dt/conn)))
+
+;; ;;     [(?am)
+;; ;;      [?h :hub-commitment/amount ?amt]
+;; ;;      [?hr :hub-received/commitment ?h]
+;; ;;      [?hr :hub-received/amount ?amt-rcvd]]
+
+;; (q '[:find ?amt-rcvd
+;;      :where
+;;      [?hr :hub-received/amount ?amt-rcvd]]
+;;    (db (dt/conn)))
+
 
 ;; find all people whose hub commitment is not yearly.
 ;; find their address.
@@ -48,7 +75,7 @@
 ;; retrieve all active thaalis for the address of a particular person
 (defn thaalis-for-its-address
   [its]
-  ((dt/api :qu) '[:find ?thaali-num ?size ?thaali
+  ((@dt/api :qu) '[:find ?thaali-num ?size ?thaali
                 :in $ ?its
                 :where
                 [?person :person/its ?its]
@@ -62,7 +89,7 @@
 ;; find all persons in Pune
 (defn all-persons-in-pune
   []
-  ((dt/api :qu) '[:find ?its
+  ((@dt/api :qu) '[:find ?its
                 :where
                 [?person :person/its ?its]
                 [?person :person/in-poona? true]]))
@@ -70,20 +97,20 @@
 ;; find all persons in Pune and receiving thaali barakat
 (defn persons-receiving-thaali
   []
-  ((dt/api :qu) '[:find ?person
+  ((@dt/api :qu) '[:find ?person
                 :where
                 [?person :person/its]
                 [?person :person/in-poona? true]
                 [?person :person/receives-thaali? true]]))
 
-;; find all persons in Pune and not receiving thaali barakat
-(defn persons-not-receiving-thaali
-  []
-  ((dt/api :qu) '[:find ?person
-                :where
-                [?person :person/its]
-                [?person :person/in-poona? true]
-                [?person :person/receives-thaali? false]]))
+;; ;; find all persons in Pune and not receiving thaali barakat
+;; (defn persons-not-receiving-thaali
+;;   []
+;;   ((@dt/api :qu) '[:find ?person
+;;                 :where
+;;                 [?person :person/its]
+;;                 [?person :person/in-poona? true]
+;;                 [?person :person/receives-thaali? false]]))
 
 (defn attr-missing?
   [db eid attr]
@@ -91,7 +118,7 @@
 
 (defn pending-hubs-for-its-address
   [its]
-  ((dt/api :qu) '[:find ?thaali-num ?size
+  ((@dt/api :qu) '[:find ?thaali-num ?size
                 :in $ ?its
                 :where
                 [?p :person/its ?its]
@@ -102,13 +129,13 @@
 
 ;; total commitment for the financial year
 (defn total-commitment
-  ([year] (ffirst ((dt/api :qu) '[:find (sum ?amount)
+  ([year] (ffirst ((@dt/api :qu) '[:find (sum ?amount)
                                   :in $ ?year
                                   :where
                                   [?y :hub-commitment/financial-year ?year]
                                   [?y :hub-commitment/amount ?amount]]
                                 year)))
-  ([year its] (ffirst ((dt/api :qu) '[:find ?amount
+  ([year its] (ffirst ((@dt/api :qu) '[:find ?amount
                                       :in $ ?year ?its
                                       :where
                                       [?p :person/its ?its]
@@ -145,7 +172,7 @@
 
 (defn upsert-en
   [m]
-  ((dt/api :upsert-en) m))
+  ((@dt/api :upsert-en) m))
 
 
 ;; (def val-address
@@ -180,7 +207,7 @@
 ;;   [val-set]
 ;;   (fn [entity-map]
 ;;     (if (val/valid? val-set)
-;;         ((dt/api :upsert-en) entity-map))))
+;;         ((@dt/api :upsert-en) entity-map))))
 
 (comment
   (find-person-by-its 20341280)

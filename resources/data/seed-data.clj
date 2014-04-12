@@ -130,5 +130,9 @@
   :hub-received/amount 7000
   :hub-received/commitment #db/id[:db.part/user -1000040]}
 
+  {:db/id #db/id[:db.part/user -1000037]
+  :hub-received/amount 7000
+  :hub-received/commitment #db/id[:db.part/user -1000040]}
+
 ]
 

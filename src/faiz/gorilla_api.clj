@@ -53,14 +53,13 @@
                 api/get-en
                 search))
 
-(find-me :all :person/its)
+;; (find-me :all :person/its)
 
 (defn save [m]
   (api/upsert-en m))
 
-(def persons-not-receiving-thaali (comp
-                                     print-en
-                                     format-entities
-                                     api/get-en
-                                     api/persons-not-receiving-thaali))
-
+;; (def persons-not-receiving-thaali (comp
+;;                                      print-en
+;;                                      format-entities
+;;                                      api/get-en
+;;                                      api/persons-not-receiving-thaali))

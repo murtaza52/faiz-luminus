@@ -1,3 +1,4 @@
 {:db {:uri "datomic:free://localhost:4334/faiz"
       :schema ["data/schema.clj"]
-      :seed-data ["data/seed-data.clj"]}}
+      :seed-data ["data/seed-data.clj"]}
+ :mode :dev}

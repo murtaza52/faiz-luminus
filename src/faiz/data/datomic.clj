@@ -1,18 +1,11 @@
 (ns faiz.data.datomic
   (:require [datomic.api :refer [db q] :as d]
-            [faiz.config :refer [config]]
             [plumbing.core :refer [fnk defnk]]
-            [plumbing.graph :as graph]
+            [plumbing.graph :as g]
             [schema.core :as s]
             [faiz.utils :as utils]))
 
-(def db-conf (atom (-> (config) :db)))
-
-(defnk add-conn
-  [uri]
-  (swap! db-conf merge {:conn (d/connect uri)}))
-
-(defn add-data
+(defnk add-data
   "Populates data in the db"
   [conn file]
   (d/transact conn (utils/read-clj file)))
@@ -32,7 +25,7 @@
   (doall
    (map #(add-data conn %) seed-data)))
 
-;;;;;;;;;;;;;;;;;; Query fns ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;; Query fen's ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defn qu
   "Function for querying"
@@ -74,22 +67,31 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;; Graph ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(def dt
-  (graph/lazy-compile
-   (graph/graph
-    :qu (fnk [conn] (partial qu conn))
+(defn start [conf graph]
+  (let [compiled-graph (g/eager-compile graph)]
+    (compiled-graph conf)))
+
+(def dev-tasks
+  {:reset-db! reset-db!
+   :conn (fnk [uri] (d/connect uri))
+   :alter-schema! alter-schema!
+   :seed-data! seed-data!})
+
+(def ops-tasks
+  {:qu (fnk [conn] (partial qu conn))
     :id->entity (fnk [conn] (partial id->entity-2 conn))
     :get-en (fnk [id->entity] (comp realize-en id->entity))
-    :upsert-en (fnk [conn] (partial upsert-en conn)))))
+    :upsert-en (fnk [conn] (partial upsert-en conn))})
 
-;;; This should be a separate ns ;;;;
+(def api (atom {}))
 
-(def dev? true)
+(defn conn []
+  (@api :db))
 
-(def dev-fns [reset-db! add-conn alter-schema! seed-data!])
+;; compose the dev fns till seed with
 
-(if dev?
-    (doall (map #(% @db-conf) dev-fns))
-    (add-conn @db-conf))
+;; keep the conn state in  local var in the api sectioPn
 
-(defonce api (dt @db-conf))
+;; check if the errors percolate
+
+;; check for the dev mode
