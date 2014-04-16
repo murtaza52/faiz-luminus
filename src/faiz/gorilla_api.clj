@@ -19,10 +19,6 @@
   [_ v]
   (api/find-all v))
 
-(defmethod search :all
-  [_ v]
-  (api/find-all v))
-
 (defmethod search :default
   [k v]
   (api/find-en k v))

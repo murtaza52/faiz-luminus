@@ -5,7 +5,7 @@
             [schema.core :as s]
             [faiz.utils :as utils]))
 
-(defnk add-data
+(defn add-data
   "Populates data in the db"
   [conn file]
   (d/transact conn (utils/read-clj file)))
@@ -67,26 +67,32 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;; Graph ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defn start [conf graph]
+(defn start [graph conf]
   (let [compiled-graph (g/eager-compile graph)]
     (compiled-graph conf)))
 
 (def dev-tasks
-  {:reset-db! reset-db!
-   :conn (fnk [uri] (d/connect uri))
-   :alter-schema! alter-schema!
-   :seed-data! seed-data!})
+  (g/graph  {:reset-db! reset-db!
+             :conn (fnk [uri] (d/connect uri))
+             :alter-schema! alter-schema!
+             :seed-data! seed-data!}))
 
 (def ops-tasks
-  {:qu (fnk [conn] (partial qu conn))
-    :id->entity (fnk [conn] (partial id->entity-2 conn))
-    :get-en (fnk [id->entity] (comp realize-en id->entity))
-    :upsert-en (fnk [conn] (partial upsert-en conn))})
+  (g/graph  {:qu (fnk [conn] (partial qu conn))
+             :id->entity (fnk [conn] (partial id->entity-2 conn))
+             :get-en (fnk [id->entity] (comp realize-en id->entity))
+             :upsert-en (fnk [conn] (partial upsert-en conn))}))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (def api (atom {}))
 
 (defn conn []
   (@api :db))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;(def reset (start dev-tasks))
 
 ;; compose the dev fns till seed with
 
