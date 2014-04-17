@@ -11,7 +11,8 @@
                  %1)
                (conf :db)
                [dt/dev-tasks dt/ops-tasks])
-       (reset! dt/api)))
+       (reset! dt/api))
+  nil)
 
 (defn restart []
   (refresh :after 'user/start))

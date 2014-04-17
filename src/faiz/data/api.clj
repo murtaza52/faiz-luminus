@@ -38,9 +38,6 @@
 ;; take his hub commitment amount
 ;; total of hub rcvd is less than amt
 
-
-;;
-
 ;; (q '[:find ?h ?a
 ;;      :where
 ;;      [?e :person/its]
@@ -48,12 +45,20 @@
 ;;      [?h :hub-commitment/amount ?a]]
 ;;    (db (dt/conn)))
 
-;; (q '[:find (sum ?amt-rcvd) ?amt ?h
-;;      :where
-;;      [?h :hub-commitment/amount ?amt]
-;;      [?hr :hub-received/commitment ?h]
-;;      [?hr :hub-received/amount ?amt-rcvd]]
-;;    (db (dt/conn)))
+(comment
+
+  (q '[:find (sum ?a-r) ?hr
+       :where
+       [?hr :hub-received/amount ?a-r]
+       [?hr :hub-received/commitment ?h]
+       [?h :hub-commitment/amount ?amt]]
+     (db (dt/conn)))
+
+  (q '[:find ?c
+       :where
+       [?c :hub-received/amount]]
+     (db (dt/conn))))
+
 
 ;; ;;     [(?am)
 ;; ;;      [?h :hub-commitment/amount ?amt]
