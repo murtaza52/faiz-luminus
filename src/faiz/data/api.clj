@@ -1,6 +1,7 @@
 (ns faiz.data.api
   (:require [faiz.data.datomic :as dt]
-            [datomic.api :refer [db q] :as d]))
+            [datomic.api :refer [db q] :as d]
+            [plumbing.core :refer [fnk defnk]]))
 
 (def search-clause '[:find ?e
                      :in $ ?v
@@ -47,17 +48,53 @@
 
 (comment
 
-  (q '[:find (sum ?a-r) ?hr
-       :where
-       [?hr :hub-received/amount ?a-r]
-       [?hr :hub-received/commitment ?h]
-       [?h :hub-commitment/amount ?amt]]
-     (db (dt/conn)))
+ (defn hub-commitments [term]
+   (q '[:find ?hub-com ?com-amt ?term ?per
+        :in $ [?term ...]
+        :where
+        [?hub-com :hub-commitment/term ?term]
+        [?hub-com :hub-commitment/amount ?com-amt]
+        [?hub-com :hub-commitment/person ?per]]
+      (db (dt/conn))
+      term))
 
-  (q '[:find ?c
-       :where
-       [?c :hub-received/amount]]
-     (db (dt/conn))))
+ (defn connect [] (db (dt/conn)))
+
+ (defnk get-person-details [person]
+   (let [e (d/entity (connect) 17592186045448)]
+       (map (:person/its e) [:person/first-name :person/last-name])))
+
+ (get-person-details)
+ (->>
+  (hub-commitments [:1435-shawaal :1435-1436])
+  (map #(zipmap [:hub-com :com-amt :term :person] %))
+  )
+(map get-person-details)
+ (defn find-hub-received []
+   (q '[:find (sum ?a-r) ?h ?amt
+        :with ?hr
+        :where
+        [?hr :hub-received/amount ?a-r]
+        [?hr :hub-received/commitment ?h]
+        [?h :hub-commitment/amount ?amt]]
+      (db (dt/conn))))
+
+
+
+ (def hub-received
+   '[[hub-received ?amt-rcvd ?hub-comm ?tot-amt]
+     [?hr :hub-received/amount ?a-r]
+     [?hr :hub-received/commitment ?h]
+     [?h :hub-commitment/amount ?amt]])
+
+ ()
+
+ (q '[:find ?c
+      :where
+      [?c :hub-received/amount]]
+    (db (dt/conn)))
+
+ )
 
 
 ;; ;;     [(?am)
@@ -179,7 +216,7 @@
   [m]
   ((@dt/api :upsert-en) m))
 
-
+(+ 1 2 (- 5 4))
 ;; (def val-address
 ;;   (val/validation-set
 ;;    (val/presence-of :address/area)

@@ -32,7 +32,7 @@
    :person/email "abc@abc.com"
    :person/in-poona? true
    :person/receives-thaali? true
-   :hub-commitment/term :hub-commitment.term/yearly
+   :hub-commitment/term :hub-commitment.term-type/yearly
    :person/address #db/id[:db.part/user -1000005]}
 
   {:db/id #db/id[:db.part/user -1000010]
@@ -55,7 +55,7 @@
    :person/email "abc@abc.com"
    :person/in-poona? true
    :person/receives-thaali? true
-   :hub-commitment/term :hub-commitment.term/monthly
+   :hub-commitment/term :hub-commitment.term-type/monthly
    :person/address #db/id[:db.part/user -1000511]}
 
  ;; Thaalis
@@ -92,13 +92,13 @@
 ;; Hub commitment
 
  {:db/id #db/id[:db.part/user -1000040]
-  :hub-commitment/financial-year :1435-1436
+  :hub-commitment/term :1435-1436
   :hub-commitment/person #db/id[:db.part/user -1000009]
   :hub-commitment/amount 52000}
 
   ;; Hub commitment for a monthly term
  {:db/id #db/id[:db.part/user -1000071]
-  :hub-commitment/month :1435-shawaal
+  :hub-commitment/term :1435-shawaal
   :hub-commitment/person #db/id[:db.part/user -1000011]
   :hub-commitment/amount 3300}
 
