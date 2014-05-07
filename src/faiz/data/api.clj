@@ -3,6 +3,8 @@
             [datomic.api :refer [db q] :as d]
             [plumbing.core :refer [fnk defnk]]))
 
+(defn connect [] (db (dt/conn)))
+
 (def search-clause '[:find ?e
                      :in $ ?v
                      :where])
@@ -17,12 +19,22 @@
   (let [clause (merge '[:find ?e :in $ ?v :where] (vector '?e attr '?v))]
     ((@dt/api :qu) clause v)))
 
+(defn update-en [[db-id attr value]]
+  (d/transact (dt/conn) [{:db/id db-id
+                          attr value}]))
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Search API ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; retrieve address of a person, return all thaalis, pending hubs.
 (def given-person-get-thaalis)
 
 (def get-en (@dt/api :get-en))
+
+(defn get-entity [id]
+  (->> id
+       (d/entity (connect))
+       d/touch))
 
 (defn pending-hubs
   [its]
@@ -58,7 +70,6 @@
       (db (dt/conn))
       term))
 
- (defn connect [] (db (dt/conn)))
 
  (defnk get-person-details [person]
    (let [e (d/entity (connect) 17592186045448)]
@@ -216,7 +227,9 @@
   [m]
   ((@dt/api :upsert-en) m))
 
-(+ 1 2 (- 5 4))
+(defn upsert [m]
+  @(d/transact (dt/conn) m))
+
 ;; (def val-address
 ;;   (val/validation-set
 ;;    (val/presence-of :address/area)

@@ -49,8 +49,6 @@
                 api/get-en
                 search))
 
-;; (find-me :all :person/its)
-
 (defn save [m]
   (api/upsert-en m))
 
