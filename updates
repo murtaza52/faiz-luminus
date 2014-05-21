@@ -8,7 +8,6 @@
 ;; **
 
 ;; @@
-(use 'faiz.gorilla-api)
 (use 'user)
 
 (restart)
@@ -17,6 +16,13 @@
 ;;; :reloading ()
 ;;; 
 ;; <-
+;; =>
+;;; {"type":"html","content":"<span class='clj-nil'>nil</span>","value":"nil"}
+;; <=
+
+;; @@
+(use 'faiz.gorilla-api)
+;; @@
 ;; =>
 ;;; {"type":"html","content":"<span class='clj-nil'>nil</span>","value":"nil"}
 ;; <=
@@ -50,7 +56,7 @@
 ;; @@
 ;; Define a new person, include the :db/id of the address saved above. 
 
-;; The hub-commitment/term specifies if the hub term is monthly or yearly.
+;; The hub-commitment/term-type specifies if the hub term is monthly or yearly.
 
 (def person 
   {:common/entity-type :common.entity-type/person
@@ -60,7 +66,7 @@
    :person/its 20341112
    :person/mobile 9923109056
    :person/email "abc@abc.com"
-   :hub-commitment/term :hub-commitment.term/monthly
+   :hub-commitment/term-type :hub-commitment.term-type/monthly
    :person/address {:db/id 17592186045489}})
 ;; @@
 ;; =>
@@ -73,7 +79,7 @@
 (save person)
 ;; @@
 ;; =>
-;;; {"type":"html","content":"<span class='clj-unkown'>{:db/id 17592186045493}</span>","value":"{:db/id 17592186045493}"}
+;;; {"type":"html","content":"<span class='clj-unkown'>{:db/id 17592186045464}</span>","value":"{:db/id 17592186045464}"}
 ;; <=
 
 ;; @@
@@ -148,25 +154,12 @@
 
 (find-me :db/id 17592186045489)
 ;; @@
-;; ->
-;;; 
-;;; | Street |  Landmark | Flat Num | Floor | Building |    Society |           Area |
-;;; |--------+-----------+----------+-------+----------+------------+----------------|
-;;; |   NIBM | ABC Farms |      206 |     4 |       A5 | GV Gardens | Salunke Vihaar |
-;;; 
-;; <-
-;; =>
-;;; {"type":"html","content":"<span class='clj-nil'>nil</span>","value":"nil"}
-;; <=
 
 ;; @@
 ;; Find a thaali using the thaali number
 
-(find-me :thaali/num 21)
+(find-me :thaali/num 22)
 ;; @@
-;; =>
-;;; {"type":"html","content":"<span class='clj-nil'>nil</span>","value":"nil"}
-;; <=
 
 ;; @@
 ;; You can list all people, thaalis, addresses etc. Use :all as the first parameter, and any attribute as the second parameter.

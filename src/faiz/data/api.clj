@@ -23,6 +23,11 @@
   (d/transact (dt/conn) [{:db/id db-id
                           attr value}]))
 
+(defn find-attr-for-en [id-attr id-attr-val attr-to-find]
+  (->> (find-en id-attr id-attr-val)
+       ffirst
+       (d/entity (connect))
+       attr-to-find))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Search API ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

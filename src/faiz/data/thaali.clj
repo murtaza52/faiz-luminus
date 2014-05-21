@@ -25,23 +25,28 @@
   (api/upsert [{:db/id [:thaali/num thaali-num]
                 :thaali/size :thaali.size/half}]))
 
-(defmethod thaali-action :to-transport [_ thaali-num]
-  (api/upsert [{:db/id [:thaali/num thaali-num]
-                :delivery/mode :delivery.mode/transport}]))
+(defmethod thaali-action :to-transport [_ {:keys [thaali-num transporter]}]
+    (api/upsert [{:db/id [:thaali/num thaali-num]
+                :delivery/mode :delivery.mode/transport
+                :delivery/transporter transporter}]))
 
 (defmethod thaali-action :to-pickup [_ thaali-num]
-  (api/upsert [{:db/id [:thaali/num thaali-num]
-                :delivery/mode :delivery.mode/pickup}]))
+  (let [transporter (api/find-attr-for-en :thaali/num thaali-num :delivery/transporter)]
+    (api/upsert [{:db/id [:thaali/num thaali-num]
+                  :delivery/mode :delivery.mode/pickup}
+                 [:db/retract [:thaali/num thaali-num] :delivery/transporter transporter]])))
 
-(defmethod thaali-action :new [_ thaali-map]
-  (api/upsert-en (dt/conn) thaali-maap))
-
-(defmethod thaali-action :change-address [_ thaali-map]
-  (api/upsert-en (dt/conn) thaali-map))
 
 (comment
-  (thaali-action :start 21)
 
-  (-> (api/find-en :thaali/num 21)
+  (thaali-action :to-transport {:thaali-num 22 :transporter :delivery.transporter/hunaid-bhai})
+
+  (thaali-action :stop 22)
+
+  (-> (api/find-en :thaali/num 22)
       ffirst
-      api/get-entity))
+      api/get-entity)
+
+  (defmethod thaali-action :new [_ thaali-map]
+  (api/upsert-en (dt/conn) thaali-maap))
+)

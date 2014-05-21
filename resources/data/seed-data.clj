@@ -32,7 +32,7 @@
    :person/email "abc@abc.com"
    :person/in-poona? true
    :person/receives-thaali? true
-   :hub-commitment/term :hub-commitment.term-type/yearly
+   :hub-commitment/term-type :hub-commitment.term-type/yearly
    :person/address #db/id[:db.part/user -1000005]}
 
   {:db/id #db/id[:db.part/user -1000010]
@@ -55,7 +55,7 @@
    :person/email "abc@abc.com"
    :person/in-poona? true
    :person/receives-thaali? true
-   :hub-commitment/term :hub-commitment.term-type/monthly
+   :hub-commitment/term-type :hub-commitment.term-type/monthly
    :person/address #db/id[:db.part/user -1000511]}
 
  ;; Thaalis

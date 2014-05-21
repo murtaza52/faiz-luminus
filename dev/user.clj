@@ -1,7 +1,8 @@
 (ns user
   (:require [faiz.data.datomic :as dt]
             [faiz.config :refer [config]]
-            [clojure.tools.namespace.repl :refer [refresh]]))
+            [clojure.tools.namespace.repl :refer [refresh]]
+            [faiz.server]))
 
 (def conf (config))
 
