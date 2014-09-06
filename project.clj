@@ -33,7 +33,10 @@
                  [org.clojure/tools.nrepl "0.2.3"]
                  [local/camel-snake-kebab "1.1"]
                  ;;
-                 [com.taoensso/sente "0.13.0"]]
+                 [com.taoensso/sente "0.13.0"]
+                 [om "0.6.4"]
+                 [prismatic/om-tools "0.2.1"]
+                 [reagent "0.4.2"]]
   :plugins [[lein-ring "0.8.7"]
             [lein-cljsbuild "1.0.2"]
             [lein-gorilla "0.2.0"]
@@ -51,11 +54,15 @@
                    :source-paths ["dev"]}}
   :repl-options {:timeout 120000}
   :hooks [leiningen.cljsbuild]
-  :source-paths ["src" "src-cljs"]
+  :source-paths ["src" "src-cljs" "dev-cljs"]
   :cljsbuild {:builds ; Compiled in parallel
               [{:id :main
-                :source-paths ["src-cljs"]
-                :compiler     {:output-to "resources/public/main.js"
-                               :optimizations :whitespace
-                               :pretty-print true}}]}
-  :min-lein-version "2.0.0")
+                :source-paths ["src-cljs" "dev-cljs"]
+                :compiler     {:preamble ["reagent/react.js"]
+                               :output-to "resources/public/main.js"
+                               :output-dir "out"
+                               :optimizations :none
+                               :pretty-print true
+                               :source-map true}}]}
+  :min-lein-version "2.0.0"
+  :jvm-opts ^:replace ["-Xmx1g" "-server"])

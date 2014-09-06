@@ -32,8 +32,7 @@
    :person/email "abc@abc.com"
    :person/in-poona? true
    :person/receives-thaali? true
-   :hub-commitment/term-type :hub-commitment.term-type/yearly
-   :person/address #db/id[:db.part/user -1000005]}
+   :hub-commitment/term-type :hub-commitment.term-type/yearly}
 
   {:db/id #db/id[:db.part/user -1000010]
    :person/first-name "Batul"
@@ -43,8 +42,7 @@
    :person/mobile 9923589052
    :person/email "abc@abc.com"
    :person/in-poona? true
-   :person/receives-thaali? true
-   :person/address #db/id[:db.part/user -1000005]}
+   :person/receives-thaali? true}
 
   {:db/id #db/id[:db.part/user -1000011]
    :person/first-name "Tasneem"
@@ -55,8 +53,7 @@
    :person/email "abc@abc.com"
    :person/in-poona? true
    :person/receives-thaali? true
-   :hub-commitment/term-type :hub-commitment.term-type/monthly
-   :person/address #db/id[:db.part/user -1000511]}
+   :hub-commitment/term-type :hub-commitment.term-type/monthly}
 
  ;; Thaalis
 
@@ -65,7 +62,8 @@
   :thaali/num 21
   :thaali/active? true
   :delivery/mode :delivery.mode/pickup
-  :thaali/person #db/id[:db.part/user -1000009]}
+  :thaali/persons [#db/id[:db.part/user -1000009]]
+  :thaali/address #db/id[:db.part/user -1000005]}
 
  {:db/id #db/id[:db.part/user -1000003]
   :thaali/size :thaali.size/full
@@ -73,7 +71,8 @@
   :thaali/active? true
   :delivery/mode :delivery.mode/transport
   :delivery/transporter :delivery.transporter/hunaid-bhai
-  :thaali/person #db/id[:db.part/user -1000011]}
+  :thaali/persons [#db/id[:db.part/user -1000011]]
+  :thaali/address #db/id[:db.part/user -1000511]}
 
  ;; Thaali Events
 

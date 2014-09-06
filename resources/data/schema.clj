@@ -75,13 +75,6 @@
   :db.install/_attribute :db.part/db}
 
  {:db/id #db/id[:db.part/db]
-  :db/ident :person/address
-  :db/valueType :db.type/ref
-  :db/cardinality :db.cardinality/one
-  :db/doc "Address of the person"
-  :db.install/_attribute :db.part/db}
-
- {:db/id #db/id[:db.part/db]
   :db/ident :person/mobile
   :db/valueType :db.type/long
   :db/cardinality :db.cardinality/one
@@ -123,7 +116,7 @@
  {:db/id #db/id[:db.part/db]
   :db/ident :group/coordinator
   :db/valueType :db.type/ref
-  :db/cardinality :db.cardinality/one
+  :db/cardinality :db.carnndinality/one
   :db/doc "Coordinator of the group."
   :db.install/_attribute :db.part/db}
 
@@ -242,10 +235,17 @@
  ;;thaali-details
 
  {:db/id #db/id[:db.part/db]
-  :db/ident :thaali/person
+  :db/ident :thaali/persons
+  :db/valueType :db.type/ref
+  :db/cardinality :db.cardinality/many
+  :db/doc "The persons taking barakat from the thaali."
+  :db.install/_attribute :db.part/db}
+
+ {:db/id #db/id[:db.part/db]
+  :db/ident :thaali/address
   :db/valueType :db.type/ref
   :db/cardinality :db.cardinality/one
-  :db/doc "The person incharge for the thaali."
+  :db/doc "Address where the thaali is delivered"
   :db.install/_attribute :db.part/db}
 
  {:db/id #db/id[:db.part/db]

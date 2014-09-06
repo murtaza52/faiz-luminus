@@ -34,6 +34,13 @@
 ;; retrieve address of a person, return all thaalis, pending hubs.
 (def given-person-get-thaalis)
 
+;; (defn get-max-thaali-num []
+;;   (->> (q '[:find (max ?thaali-num)
+;;              :where
+;;              [_ :thaali/num ?thaali-num]]
+;;            (db (dt/conn)))
+;;        ffirst))
+
 (def get-en (@dt/api :get-en))
 
 (defn get-entity [id]
@@ -80,12 +87,12 @@
    (let [e (d/entity (connect) 17592186045448)]
        (map (:person/its e) [:person/first-name :person/last-name])))
 
- (get-person-details)
- (->>
+  (->>
   (hub-commitments [:1435-shawaal :1435-1436])
   (map #(zipmap [:hub-com :com-amt :term :person] %))
   )
-(map get-person-details)
+
+
  (defn find-hub-received []
    (q '[:find (sum ?a-r) ?h ?amt
         :with ?hr
@@ -102,8 +109,6 @@
      [?hr :hub-received/amount ?a-r]
      [?hr :hub-received/commitment ?h]
      [?h :hub-commitment/amount ?amt]])
-
- ()
 
  (q '[:find ?c
       :where

@@ -36,17 +36,20 @@
                   :delivery/mode :delivery.mode/pickup}
                  [:db/retract [:thaali/num thaali-num] :delivery/transporter transporter]])))
 
+;; (defmethod thaali-action :new [_ thaali-map]
+;;     (let [thaali-num (+ 1 (api/get-max-thaali-num))]
+;;       (api/upsert-en (merge {:thaali-num thaali-num} thaali-map))))
+
+
 
 (comment
-
+(thaali-action :new {:thaali-size :thaali.size/full})
   (thaali-action :to-transport {:thaali-num 22 :transporter :delivery.transporter/hunaid-bhai})
-
   (thaali-action :stop 22)
 
   (-> (api/find-en :thaali/num 22)
       ffirst
       api/get-entity)
 
-  (defmethod thaali-action :new [_ thaali-map]
-  (api/upsert-en (dt/conn) thaali-maap))
-)
+
+  )
