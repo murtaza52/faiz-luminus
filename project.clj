@@ -36,13 +36,10 @@
                  [com.taoensso/sente "0.13.0"]
                  [om "0.6.4"]
                  [prismatic/om-tools "0.2.1"]
-                 [reagent "0.4.2"]
                  [org.clojure/core.match "0.2.1"]]
   :plugins [[lein-ring "0.8.7"]
-            [lein-cljsbuild "1.0.2"]
             [lein-gorilla "0.2.0"]
-            [jonase/eastwood "0.1.1"]
-            [com.cemerick/austin "0.1.4"]]
+            [jonase/eastwood "0.1.1"]]
   :resource-paths ["resources"]
   :repositories {"project" "file:repo"}
   :profiles {:production {:ring {:open-browser? false
@@ -55,15 +52,6 @@
                    :source-paths ["dev"]}}
   :repl-options {:timeout 120000}
   :hooks [leiningen.cljsbuild]
-  :source-paths ["src" "src-cljs" "dev-cljs"]
-  :cljsbuild {:builds ; Compiled in parallel
-              [{:id :main
-                :source-paths ["src-cljs" "dev-cljs"]
-                :compiler     {:preamble ["reagent/react.js"]
-                               :output-to "resources/public/main.js"
-                               :output-dir "out"
-                               :optimizations :none
-                               :pretty-print true
-                               :source-map true}}]}
+  :source-paths ["src"]
   :min-lein-version "2.0.0"
   :jvm-opts ^:replace ["-Xmx1g" "-server"])
