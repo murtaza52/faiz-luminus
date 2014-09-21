@@ -10,7 +10,6 @@
    [clojure.core.async :as async :refer (<! <!! >! >!! put! chan go go-loop)]
    [taoensso.timbre    :as timbre]
    [taoensso.sente     :as sente]
-   [cemerick.austin.repls :as austin]
    [ring.middleware.anti-forgery :as ring-anti-forgery]
    [faiz.data.thaali :as thaali]))
 
@@ -54,12 +53,7 @@
 
 (def landing-pg
   (hiccup/html
-   [:div {:id "main-app"}]
-    [:script {:src (austin/browser-connected-repl-js)}]
-        [:script {:src "out/goog/base.js"}]
-    [:script {:src "main.js"}]
-    [:script "goog.require('main.core')"]
-    [:script "faiz.main.run()"]))
+    [:h1 "Hello World"]))
 
 (defroutes my-ring-handler
     (->

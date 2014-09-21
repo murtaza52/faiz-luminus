@@ -2,17 +2,7 @@
   (:require [faiz.data.datomic :as dt]
             [faiz.config :refer [config]]
             [clojure.tools.namespace.repl :refer [refresh]]
-            [faiz.server :as server]
-            [cemerick.austin.repls]
-            [cemerick.austin]))
-
-;; the browser js tries to connect to the conn stored in repl-env atom
-(def repl-env (reset! cemerick.austin.repls/browser-repl-env
-                      (cemerick.austin/repl-env)))
-
-;; starts the cljs repl
-(defn cljs-repl []
-  (cemerick.austin.repls/cljs-repl repl-env))
+            [faiz.server :as server]))
 
 (def conf (config))
 

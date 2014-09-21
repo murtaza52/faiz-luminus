@@ -36,7 +36,7 @@
 ;;   (match [args]
 ;;     [[]]))
 
-(find-en :thaali/num 21)
+;; (find-en :thaali/num 21)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Search API ;;;;;;;;;;;;;;;;;;;;;;;;;;;
