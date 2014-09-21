@@ -1,7 +1,8 @@
 (ns faiz.data.api
   (:require [faiz.data.datomic :as dt]
             [datomic.api :refer [db q] :as d]
-            [plumbing.core :refer [fnk defnk]]))
+            [plumbing.core :refer [fnk defnk]]
+            [clojure.core.match :refer [match]]))
 
 (defn connect [] (db (dt/conn)))
 
@@ -28,6 +29,15 @@
        ffirst
        (d/entity (connect))
        attr-to-find))
+
+;; thaali-num ; phone number; name; :address "abc";
+
+;; (defn find [& args]
+;;   (match [args]
+;;     [[]]))
+
+(find-en :thaali/num 21)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Search API ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

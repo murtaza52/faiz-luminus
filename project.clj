@@ -1,7 +1,7 @@
 (defproject faiz "0.1.0-SNAPSHOT"
   :description "FIXME: write description"
   :url "http://example.com/FIXME"
-  :dependencies [[org.clojure/clojure "1.5.1"]
+  :dependencies [[org.clojure/clojure "1.6.0"]
                  [lib-noir "0.7.1"]
                  ;; [ring-server "0.3.0"]
                  ;;[selmer "0.4.3"]
@@ -36,7 +36,8 @@
                  [com.taoensso/sente "0.13.0"]
                  [om "0.6.4"]
                  [prismatic/om-tools "0.2.1"]
-                 [reagent "0.4.2"]]
+                 [reagent "0.4.2"]
+                 [org.clojure/core.match "0.2.1"]]
   :plugins [[lein-ring "0.8.7"]
             [lein-cljsbuild "1.0.2"]
             [lein-gorilla "0.2.0"]

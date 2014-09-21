@@ -29,7 +29,7 @@
 (defn restart []
   (refresh :after 'user/start))
 
-
+(start)
 ;(dt/start (merge dt/ops-tasks dt/dev-tasks) (conf :db))
 
 ;(dt/start (merge dt/ops-tasks dt/dev-tasks) (conf :db))
