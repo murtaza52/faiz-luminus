@@ -30,10 +30,9 @@
                  [org.clojure/tools.nrepl "0.2.3"]
                  [local/camel-snake-kebab "1.1"]
                  ;;
-                 [com.taoensso/sente "0.13.0"]]
-  :plugins [[lein-ring "0.8.7"]
-            [lein-gorilla "0.2.0"]
-            [jonase/eastwood "0.1.1"]]
+                 [com.taoensso/sente "0.13.0"]
+                 [slingshot "0.10.3"]
+                 [dire "0.5.2"]]
   :resource-paths ["resources"]
   :repositories {"project" "file:repo"}
   :profiles {:production {:ring {:open-browser? false
@@ -44,7 +43,6 @@
                                   [clj-http "0.9.1"]
                                   [midje "1.6.3"]]
                    :source-paths ["dev"]}}
-  :repl-options {:timeout 120000}
   :source-paths ["src"]
   :min-lein-version "2.0.0"
   :jvm-opts ^:replace ["-Xmx1g" "-server"])

@@ -116,7 +116,7 @@
  {:db/id #db/id[:db.part/db]
   :db/ident :group/coordinator
   :db/valueType :db.type/ref
-  :db/cardinality :db.carnndinality/one
+  :db/cardinality :db.cardinality/one
   :db/doc "Coordinator of the group."
   :db.install/_attribute :db.part/db}
 

@@ -3,27 +3,45 @@
             [plumbing.core :refer [fnk defnk]]
             [plumbing.graph :as g]
             [schema.core :as s]
-            [faiz.utils :as utils]))
+            [faiz.utils :as utils]
+            [dire.core :refer [with-handler!]]
+            [slingshot.slingshot :refer [throw+]]))
 
-(defn add-data
+(defn connect [uri]
+  "Returns the connection to the server. Helpful in debuging."
+  (d/connect uri))
+
+(defn vec-or-list-of-vec? [v]
+  (and (vector? v) (vector? (first v))))
+
+(defn or-vec [v]
+  (if (vec-or-list-of-vec? v) v [v]))
+
+(defn transact [conn v]
+  "Transacts a list of items (v). Derefs the promise before returning this forces the realization of any errors."
+  @(d/transact conn (or-vec v)))
+
+(defn transact-each
   "Populates data in the db"
-  [conn file]
-  (d/transact conn (utils/read-clj file)))
+  [conn coll]
+  (map (partial transact conn) coll))
 
-(defnk reset-db!
+(defn reset-db!
   [uri]
   (d/delete-database uri)
   (d/create-database uri))
 
-(defnk alter-schema!
-  [conn schema]
-  (doall
-   (map #(add-data conn %) schema)))
+(defnk process [uri seed-data schema]
+  (reset-db! uri)
+  (let [conn (d/connect uri)]
+    {:conn conn
+     :schema (transact-each conn (utils/read-clj schema))
+     :seed-data (transact conn (utils/read-clj seed-data))}))
 
-(defnk seed-data!
-  [conn seed-data]
-  (doall
-   (map #(add-data conn %) seed-data)))
+(with-handler! #'transact
+  java.util.concurrent.ExecutionException
+  (fn [e _ v] (throw+ {:error-while-transacting v})))
+
 
 ;;;;;;;;;;;;;;;;;; Query fen's ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -71,11 +89,11 @@
   (let [compiled-graph (g/eager-compile graph)]
     (compiled-graph conf)))
 
-(def dev-tasks
-  (g/graph  {:reset-db! reset-db!
-             :conn (fnk [uri] (d/connect uri))
-             :alter-schema! alter-schema!
-             :seed-data! seed-data!}))
+;; (def dev-tasks
+;;   (g/graph  {:reset-db! reset-db!
+;;              :conn (fnk [uri] (d/connect uri))
+;;              :alter-schema! alter-schema!
+;;              :seed-data! seed-data!}))
 
 (def ops-tasks
   (g/graph  {:qu (fnk [conn] (partial qu conn))
